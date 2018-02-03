@@ -3,7 +3,6 @@ package com.techlabs.basic;
 public class SubstringTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		String addr = "www.swabhavtechlabs.com?developer=vipul";
 		int a = addr.indexOf(".")+1;
 		int b = addr.lastIndexOf(".");
