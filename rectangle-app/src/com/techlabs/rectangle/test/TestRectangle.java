@@ -11,6 +11,7 @@ public class TestRectangle {
 		r1.width = 10;
 		r1.height= 20;
 		System.out.println("Area is: " + r1.calcArea());
+		System.out.println("width: "+r1.width+" height: "+r1.height);
 	}
 
 }
