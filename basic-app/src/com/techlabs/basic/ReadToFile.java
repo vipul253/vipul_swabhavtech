@@ -3,7 +3,7 @@ import java.io.*;
 
 public class ReadToFile {
 
-	public void read(String filename) {
+	public ReadToFile(String filename) {
 		BufferedReader br = null;
 		try{	
 			br = new BufferedReader(new FileReader(filename));
@@ -24,7 +24,7 @@ public class ReadToFile {
 					br.close();
 			} 
 			catch (IOException ioe) {
-				System.out.println("Error closing BufferedReader" + ioe);
+				System.out.println("Error closing BufferedReader");
 			}
 		}
 	}

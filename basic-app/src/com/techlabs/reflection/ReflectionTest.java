@@ -8,7 +8,6 @@ public class ReflectionTest {
 		
 		gm1.printMethods("java.lang.System");
 		gc1.printConstructor("java.lang.Object");
-
 	}
 
 }
