@@ -6,7 +6,7 @@ public class WriteToFile {
 	public void write(String content,String filename) {
 		BufferedWriter bw = null;
 		try {
-			File file = new File(filename);
+			File file = new File("data/"+filename);
 			if (!file.exists()) {
 				file.createNewFile();
 			}

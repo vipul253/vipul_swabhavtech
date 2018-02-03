@@ -3,10 +3,10 @@ import java.io.*;
 
 public class ReadToFile {
 
-	public ReadToFile(String filename) {
+	public void read(String filename) {
 		BufferedReader br = null;
 		try{	
-			br = new BufferedReader(new FileReader(filename));
+			br = new BufferedReader(new FileReader("data/"+filename));
 			String contentLine = br.readLine();
 			while (contentLine != null) {
 				System.out.println(contentLine);
