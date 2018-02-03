@@ -1,5 +1,4 @@
 package com.techlabs.basic;
-import java.io.*;
 
 public class FileIOtest {
 
@@ -11,10 +10,6 @@ public class FileIOtest {
 		f1.create("sample.txt");
 		w1.write("vipul 21 IT", "sample.txt");
 		r1.read("Sample.txt");
-		
-		
-		
-		
 	}
 
 }
