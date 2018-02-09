@@ -1,6 +1,10 @@
 package com.techlabs.rectangle;
 
-public class Rectangle {
+import java.io.Serializable;
+
+public class Rectangle implements Serializable {
+
+	private static final long serialVersionUID = 1234567L;
 	private int width;
 	private int height;
 
