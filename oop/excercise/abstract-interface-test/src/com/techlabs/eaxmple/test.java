@@ -9,7 +9,7 @@ public class test {
 		b1.setName("Warlock's World");
 		b1.printInfo();
 		u1.printInfo();
-
+		
 	}
 
 }
