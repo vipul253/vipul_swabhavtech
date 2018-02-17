@@ -6,7 +6,7 @@ public class RectangleTest {
 
 	private static void printDetails(Rectangle obj) {
 		System.out.println("\nHeight:" + obj.getHeight() + " Width:"
-				+ obj.getWidth() + " Border: " + obj.getBorder());
+				+ obj.getWidth() + " Area:"+obj.calcArea()+" Border: " + obj.getBorder());
 
 	}
 
@@ -15,7 +15,7 @@ public class RectangleTest {
 		Rectangle r1 = new Rectangle(10, 20, BorderStyleOption.DOTTED);
 		printDetails(r1);
 
-		Rectangle r2 = new Rectangle(10, 20);
+		Rectangle r2 = new Rectangle(20, 40);
 		printDetails(r2);
 	}
 

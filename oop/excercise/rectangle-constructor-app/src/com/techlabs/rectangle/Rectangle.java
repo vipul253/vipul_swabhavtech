@@ -7,13 +7,12 @@ public class Rectangle {
 	private BorderStyleOption border;
 
 	public Rectangle(int width, int height) {
-		this.height = height;
 		this.width = width;
+		this.height = height;
 	}
 
 	public Rectangle(int width, int height, BorderStyleOption border) {
-		this.height = height;
-		this.width = width;
+		this(width, height);
 		this.border = border;
 	}
 
@@ -27,6 +26,10 @@ public class Rectangle {
 
 	public BorderStyleOption getBorder() {
 		return border;
+	}
+
+	public int calcArea() {
+		return width * height;
 	}
 
 }
