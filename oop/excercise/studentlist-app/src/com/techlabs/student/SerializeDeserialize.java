@@ -22,7 +22,7 @@ public class SerializeDeserialize {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Object deserialize() {
+	public ArrayList<Student> deserialize() {
 		ArrayList<Student> obj = null;
 		try {
 

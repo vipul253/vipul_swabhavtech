@@ -7,12 +7,12 @@ public class Rectangle {
 	private BorderStyleOption border;
 
 	public Rectangle(int width, int height) {
-		this.width = width;
-		this.height = height;
+		this(width, height, BorderStyleOption.SINGLE);
 	}
 
 	public Rectangle(int width, int height, BorderStyleOption border) {
-		this(width, height);
+		this.width = width;
+		this.height = height;
 		this.border = border;
 	}
 
@@ -30,6 +30,10 @@ public class Rectangle {
 
 	public int calcArea() {
 		return width * height;
+	}
+
+	public Rectangle whoIsBigger(Rectangle secondRect) {
+		return this.calcArea() > secondRect.calcArea() ? this : secondRect;
 	}
 
 }

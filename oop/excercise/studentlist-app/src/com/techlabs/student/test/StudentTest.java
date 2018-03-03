@@ -1,7 +1,6 @@
 package com.techlabs.student.test;
 
 import java.util.*;
-
 import com.techlabs.student.*;
 
 public class StudentTest {
@@ -18,9 +17,8 @@ public class StudentTest {
 			System.out.println(s.getFirstName() + " " + s.getLastName() + " "
 					+ s.getAge());
 		}
-
 		sd.serialize(studentList);
-		@SuppressWarnings("unchecked")
+		
 		ArrayList<Student> studentList1 = (ArrayList<Student>) sd.deserialize();
 
 		for (Student s : studentList1) {

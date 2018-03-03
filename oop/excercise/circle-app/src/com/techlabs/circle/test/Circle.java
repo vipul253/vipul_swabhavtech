@@ -1,4 +1,4 @@
-package com.techlabs.circle;
+package com.techlabs.circle.test;
 
 public class Circle {
 	private float radius;

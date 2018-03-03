@@ -17,6 +17,9 @@ public class RectangleTest {
 
 		Rectangle r2 = new Rectangle(20, 40);
 		printDetails(r2);
+		
+		Rectangle r3 = r1.whoIsBigger(r2);
+		printDetails(r3);
 	}
 
 }
