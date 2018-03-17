@@ -9,15 +9,11 @@ public class CustomerTest {
 	}
 	
 	public static void main(String[] args) {
-		Customer c1= new Customer("Vipul","Sawant",1000);
-		Customer c2= new Customer("abc","xyz",11000);
-		
-		System.out.println(c1.getID());
-		System.out.println(c2.getID());
+		Customer c1= new Customer("Vipul ","Sawant",1000);
+		Customer c2= new Customer("abc ","xyz",11000);
 		
 		printDetails(c1);
 		printDetails(c2);
-		
 		
 	}
 
