@@ -1,6 +1,6 @@
 package com.techlabs.set;
 
-import java.util.HashSet;
+import java.util.*;
 
 public class HashSetExample {
 
@@ -17,6 +17,7 @@ public class HashSetExample {
 		for (String i : hset)
 			System.out.println(i);
 		hset.remove(null);
+		
 		System.out.println(hset);
 		System.out.println(hset.size());
 		hset.clear();

@@ -14,6 +14,25 @@ public class Account {
 
 	}
 
+	@Override
+	public String toString() {
+		return "[Acc no:" + this.accno + " Name:" + this.name + " Balance:"
+				+ this.balance + "]";
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this==obj){
+			return true;
+		}
+		Account a = (Account) obj;
+		return (this.accno == a.accno)
+				&& (this.name.equals(a.name) && (this.balance == a.balance));
+	}
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
 	public Account(int accno, String name) {
 		this(accno, name, 500);
 	}
