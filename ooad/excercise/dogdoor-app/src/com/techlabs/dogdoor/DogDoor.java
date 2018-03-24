@@ -21,7 +21,7 @@ public class DogDoor {
 				close();
 				timer.cancel();
 			}
-		}, 5000);
+		}, 3000);
 	}
 
 	public void close() {
