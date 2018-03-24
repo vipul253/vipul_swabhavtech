@@ -1,23 +1,26 @@
 package com.techlabs.human;
 
-import com.techlabs.polymorphInterface.Emotional;
-import com.techlabs.polymorphInterface.Honorable;
+import com.techlabs.polymorphInterface.*;
 
-public class Boy implements Emotional,Honorable{
-	
-	public void cry(){
+public class Boy implements Emotional, Honorable {
+
+	@Override
+	public void cry() {
 		System.out.println("crying");
 	}
-	
-	public void laugh(){
+
+	@Override
+	public void laugh() {
 		System.out.println("laughing");
 	}
-	
-	public void wish(){
+
+	@Override
+	public void wish() {
 		System.out.println("wishing");
 	}
-	
-	public void depart(){
+
+	@Override
+	public void depart() {
 		System.out.println("departing");
 	}
 }

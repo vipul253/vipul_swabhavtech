@@ -4,11 +4,13 @@ import com.techlabs.polymorphInterface.Honorable;
 
 public class Man implements Honorable {
 	
-	public void wish(){
+	@Override
+	public void wish() {
 		System.out.println("wishing");
 	}
-	
-	public void depart(){
+
+	@Override
+	public void depart() {
 		System.out.println("departing");
 	}
 }
