@@ -5,12 +5,12 @@ public enum Type {
 
 	public String toString() {
 		switch (this) {
-			case ACOUSTIC:
-				return "Acoustic";
-			case ELECTRIC:
-				return "Electric";
-			default:
-				return "";
+		case ACOUSTIC:
+			return "Acoustic";
+		case ELECTRIC:
+			return "Electric";
+		default:
+			return "";
 		}
 	}
 }

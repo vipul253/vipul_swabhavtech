@@ -7,9 +7,5 @@ public class TestToString {
 		Account acc1 = new Account(123,"nieu",500);
 		System.out.println(acc1);
 		System.out.println(acc1.toString());
-		
-		
-		
-		
 	}
 }
