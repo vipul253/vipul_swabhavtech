@@ -6,24 +6,38 @@ public class DogDoorSimulator {
 
 	public static void main(String[] args) {
 		DogDoor door = new DogDoor();
-		BarkRecognizer recognizer = new BarkRecognizer(door);
-		//Remote remote = new Remote(door);
+	    door.addAllowedBark(new Bark("rowlf"));
+	    door.addAllowedBark(new Bark("rooowlf"));
+	    door.addAllowedBark(new Bark("rawlf"));
+	    door.addAllowedBark(new Bark("woof"));
+	    BarkRecognizer recognizer = new BarkRecognizer(door);
+	    Remote remote = new Remote(door);
 
-		System.out.println("Fido barks to go outside...");
-		recognizer.recognize("woof");
+	    System.out.println("Bruce starts barking.");
+	    recognizer.recognize(new Bark("Rowlf"));
 
-		System.out.println("Fido has gone outside...");
+	    System.out.println("\nBruce has gone outside...");
 
-		System.out.println("Fido's all done....");
-		try {
-			Thread.currentThread();  
-			Thread.sleep(9000);
-		} catch (InterruptedException e) {
-		}
-		System.out.println("..but he is stuck outside");
-		System.out.println("fido starts barking....");
-		recognizer.recognize("woof");
-		System.out.println("Fido's back inside...");
+	    try {
+	      Thread.currentThread();
+	      Thread.sleep(5000);
+	    } catch (InterruptedException e) { }
+
+	    System.out.println("\nBruce all done...");
+	    System.out.println("...but he's stuck outside!");
+
+	    System.out.println("A small dog starts barking.");
+	    recognizer.recognize(new Bark("yip"));
+
+	    try {
+	      Thread.currentThread();
+	      Thread.sleep(5000);
+	    } catch (InterruptedException e) { }
+
+	    System.out.println("\nBruce starts barking.");
+	    recognizer.recognize(new Bark("Rowlf"));
+
+	    System.out.println("\nBruce's back inside...");
 
 	}
 
