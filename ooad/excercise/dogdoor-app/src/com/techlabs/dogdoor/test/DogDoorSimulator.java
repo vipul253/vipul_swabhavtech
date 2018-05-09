@@ -11,7 +11,7 @@ public class DogDoorSimulator {
 	    door.addAllowedBark(new Bark("rawlf"));
 	    door.addAllowedBark(new Bark("woof"));
 	    BarkRecognizer recognizer = new BarkRecognizer(door);
-	    Remote remote = new Remote(door);
+	    //Remote remote = new Remote(door);
 
 	    System.out.println("Bruce starts barking.");
 	    recognizer.recognize(new Bark("Rowlf"));

@@ -15,7 +15,7 @@ public class Rectangle implements Serializable {
 	private int convertToValid(int val) {
 		if (val < 10) {
 			return 10;
-		} else if (val >= 100) {
+		} else if (val > 100) {
 			return 100;
 		} else {
 			return val;
