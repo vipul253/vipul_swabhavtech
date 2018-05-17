@@ -1,7 +1,7 @@
 package com.techlabs.DataLoader;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface Loader {
-	public ArrayList<String> load();
+	public List<String> load();
 }

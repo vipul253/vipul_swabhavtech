@@ -15,5 +15,4 @@ public class EmployeeSalaryTest {
 		PaySlip.printPaySlip(emp2);
 		PaySlip.printPaySlip(emp3);
 	}
-
 }

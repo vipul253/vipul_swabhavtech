@@ -2,36 +2,36 @@ package com.techlabs.Employee;
 
 public class Employee {
 
-	private int employeeID;
-	private String employeeName;
+	private int id;
+	private String name;
 	private String designation;
 	private int managerID;
 	private String joinDate;
 	private int salary;
 	private int age;
-	private int allowance;
+	private int department;
 
 	public Employee(int employeeID, String employeeName, String designation,
-			int managerID, String joinDate, int salary, int age, int allowance) {
-		this.employeeID = employeeID;
-		this.employeeName = employeeName;
+			int managerID, String joinDate, int salary, int age, int department) {
+		this.id = employeeID;
+		this.name = employeeName;
 		this.designation = designation;
 		this.managerID = managerID;
 		this.joinDate = joinDate;
 		this.salary = salary;
 		this.age = age;
-		this.allowance = allowance;
+		this.department = department;
 	}
 
 	@Override
 	public int hashCode() {
-		return this.employeeID;
+		return this.id;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		Employee emp = (Employee) obj;
-		if (this.employeeID == emp.getEmployeeID()) {
+		if (this.id == emp.getEmployeeID()) {
 			return true;
 		}
 		return false;
@@ -44,15 +44,15 @@ public class Employee {
 				+ " Designation:" + this.getDesignation() + "\nManager ID:"
 				+ this.getManagerID() + " Joining Date:" + this.getJoinDate()
 				+ "Salary: " + this.getSalary() + " Allowance:"
-				+ this.getAllowance() + "\n";
+				+ this.getDepartment() + "\n";
 	}
 
 	public void setEmployeeID(int employeeID) {
-		this.employeeID = employeeID;
+		this.id = employeeID;
 	}
 
 	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
+		this.name = employeeName;
 	}
 
 	public void setDesignation(String designation) {
@@ -75,16 +75,16 @@ public class Employee {
 		this.age = age;
 	}
 
-	public void setAllowance(int allowance) {
-		this.allowance = allowance;
+	public void setDepartment(int department) {
+		this.department = department;
 	}
 
 	public int getEmployeeID() {
-		return this.employeeID;
+		return this.id;
 	}
 
 	public String getEmployeeName() {
-		return this.employeeName;
+		return this.name;
 	}
 
 	public String getDesignation() {
@@ -107,8 +107,7 @@ public class Employee {
 		return this.age;
 	}
 
-	public int getAllowance() {
-		return this.allowance;
+	public int getDepartment() {
+		return this.department;
 	}
-
 }
