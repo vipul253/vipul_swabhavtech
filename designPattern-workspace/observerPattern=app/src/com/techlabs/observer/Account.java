@@ -8,45 +8,43 @@ public class Account {
 	private String name;
 	private double balance;
 	private List<AccountListener> listeners;
-	
-	public Account(int number,String name,double balance){
-		this.number=number;
-		this.name=name;
-		this.balance=balance;
-		listeners=new ArrayList<AccountListener>();
+
+	public Account(int number, String name, double balance) {
+		this.number = number;
+		this.name = name;
+		this.balance = balance;
+		listeners = new ArrayList<AccountListener>();
 	}
-	
-	public void deposit(int amount){
-		this.balance=this.balance+amount;
+
+	public void deposit(int amount) {
+		this.balance = this.balance + amount;
 		notifyListeners();
 	}
-	
-	public void withdraw(int amount){
-		this.balance=this.balance-amount;
+
+	public void withdraw(int amount) {
+		this.balance = this.balance - amount;
 		notifyListeners();
 	}
-	
-	public void addObserver(AccountListener listener){
+
+	public void addObserver(AccountListener listener) {
 		listeners.add(listener);
 	}
-	
-	private void notifyListeners(){
-		for(AccountListener l: listeners){
+
+	private void notifyListeners() {
+		for (AccountListener l : listeners) {
 			l.balanceChanged(this);
 		}
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return this.name;
 	}
-	
-	public double getBalance(){
+
+	public double getBalance() {
 		return this.balance;
 	}
-	
-	public int getNumber(){
+
+	public int getNumber() {
 		return this.number;
 	}
-	
-	
 }

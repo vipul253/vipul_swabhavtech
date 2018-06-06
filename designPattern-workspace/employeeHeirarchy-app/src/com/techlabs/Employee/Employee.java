@@ -1,5 +1,8 @@
 package com.techlabs.Employee;
 
+import java.util.*;
+import com.techlabs.Analyzer.*;
+
 public class Employee {
 
 	private int id;
@@ -10,6 +13,7 @@ public class Employee {
 	private int salary;
 	private int age;
 	private int department;
+	private List<Employee> reportees;
 
 	public Employee(int employeeID, String employeeName, String designation,
 			int managerID, String joinDate, int salary, int age, int department) {
@@ -21,8 +25,20 @@ public class Employee {
 		this.salary = salary;
 		this.age = age;
 		this.department = department;
+		this.reportees = new ArrayList<Employee>();
 	}
 	
+	public void addReportee(Employee emp){
+		this.reportees.add(emp);
+	}
+	
+	public void removeEmployee(EmployeeDTO emp){
+		this.reportees.remove(emp);
+	}
+	
+	public List<Employee> getReportees(){
+		return this.reportees;
+	}
 
 	@Override
 	public int hashCode() {
@@ -46,6 +62,13 @@ public class Employee {
 				+ this.getManagerID() + " Joining Date:" + this.getJoinDate()
 				+ "Salary: " + this.getSalary() + " Allowance:"
 				+ this.getDepartment() + "\n";
+	}
+	
+	public void getDetails(){
+		System.out.println(this.getDesignation()+"->"+this.getEmployeeName());
+		for(Employee e : this.getReportees()){
+			e.getDetails();
+		}
 	}
 
 	public void setEmployeeID(int employeeID) {

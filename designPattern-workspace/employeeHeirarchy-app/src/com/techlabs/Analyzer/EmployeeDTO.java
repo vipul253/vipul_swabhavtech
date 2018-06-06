@@ -1,6 +1,6 @@
-package com.techlabs.Employee;
+package com.techlabs.Analyzer;
 
-public class Employee {
+public class EmployeeDTO {
 
 	private int id;
 	private String name;
@@ -11,7 +11,7 @@ public class Employee {
 	private int age;
 	private int department;
 
-	public Employee(int employeeID, String employeeName, String designation,
+	public EmployeeDTO(int employeeID, String employeeName, String designation,
 			int managerID, String joinDate, int salary, int age, int department) {
 		this.id = employeeID;
 		this.name = employeeName;
@@ -23,7 +23,6 @@ public class Employee {
 		this.department = department;
 	}
 	
-
 	@Override
 	public int hashCode() {
 		return this.id;
@@ -31,21 +30,11 @@ public class Employee {
 
 	@Override
 	public boolean equals(Object obj) {
-		Employee emp = (Employee) obj;
+		EmployeeDTO emp = (EmployeeDTO) obj;
 		if (this.id == emp.getEmployeeID()) {
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee ID:" + this.getEmployeeID() + " Employee Name:"
-				+ this.getEmployeeName() + " Age:" + this.getAge()
-				+ " Designation:" + this.getDesignation() + "\nManager ID:"
-				+ this.getManagerID() + " Joining Date:" + this.getJoinDate()
-				+ "Salary: " + this.getSalary() + " Allowance:"
-				+ this.getDepartment() + "\n";
 	}
 
 	public void setEmployeeID(int employeeID) {
