@@ -1,6 +1,7 @@
 package com.techlabs.Employee;
 
 import java.util.*;
+
 import com.techlabs.Analyzer.*;
 
 public class Employee {
@@ -27,16 +28,16 @@ public class Employee {
 		this.department = department;
 		this.reportees = new ArrayList<Employee>();
 	}
-	
-	public void addReportee(Employee emp){
+
+	public void addReportee(Employee emp) {
 		this.reportees.add(emp);
 	}
-	
-	public void removeEmployee(EmployeeDTO emp){
+
+	public void removeEmployee(EmployeeDTO emp) {
 		this.reportees.remove(emp);
 	}
-	
-	public List<Employee> getReportees(){
+
+	public List<Employee> getReportees() {
 		return this.reportees;
 	}
 
@@ -63,11 +64,19 @@ public class Employee {
 				+ "Salary: " + this.getSalary() + " Allowance:"
 				+ this.getDepartment() + "\n";
 	}
-	
-	public void getDetails(){
-		System.out.println(this.getDesignation()+"->"+this.getEmployeeName());
-		for(Employee e : this.getReportees()){
-			e.getDetails();
+
+	public void getDetails(int indent) {
+		makeIndent(indent);
+		System.out.println(this.getDesignation() + "->"
+				+ this.getEmployeeName());
+		for (Employee e : this.getReportees()) {
+			e.getDetails(indent + 1);
+		}
+	}
+
+	public void makeIndent(int indent) {
+		for (int i = 0; i < indent; i++) {
+			System.out.print("    ");
 		}
 	}
 

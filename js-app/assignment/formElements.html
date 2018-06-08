@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>  
+    <title>Form Elements</title>
+</head>
+<body>
+    <form>
+        text filed:
+        <input type="text" id="nameField">
+        <input type="reset">
+    </form><br><br>
+
+    <form>
+        select options:<br>
+        <select id="options" onchange="option()">
+            <option value="opt1" selected>option1</option>
+            <option value="opt2">option2</option>
+            <option value="opt3">option3</option>
+            <option value="opt4">option4</option>
+            <option value="opt5">option5</option>
+            <option value="opt6">option6</option>
+            <option value="opt7">option7</option>
+        </select>
+        <p id="p1"></p>
+    </form><br><br>
+
+    <form>
+        radio button:<br>
+        <input type="radio" name="gender" value="male" checked> Male<br>
+        <input type="radio" name="gender" value="female"> Female<br>
+    </form><br><br>
+
+    <form>
+        text area:<br>
+        <textarea name="message" rows="10" cols="30">some example text</textarea><br><br>
+        
+        datalist:
+        <input list="browsers"><br>
+        <datalist id="browsers">
+            <option value="Firefox">
+            <option value="Chrome">
+            <option value="Opera">
+        </datalist><br>
+
+        <button type="button" onclick="alert('Hello World!')">say hello</button>
+    </form><br>
+
+    <form onsubmit="return false" oninput="o.value = parseInt(a.value) + parseInt(b.value)">
+        <input name="a" type="number" step="any"> +
+        <input name="b" type="number" step="any"> =
+        <output name="o"></output>
+    </form>
+
+    <script>
+        function option(){
+            var option = document.getElementsById("options").value;
+            document.getElementById("p1").innerHTML=option;
+        }
+    </script>
+</body>
+</html>

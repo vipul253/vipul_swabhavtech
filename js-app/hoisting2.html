@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+
+            <script type="text/javascript">
+                "use strict";
+                function f1(){
+                    console.log("invoked f1");
+                    for(var i=0;i<10;i++) {
+                        console.log(i);
+                    }
+                    console.log(i);
+                }
+
+                f1();
+                //console.log("value of counter is"+i);
+                console.log("end of scope")
+    
+            </script>
+            <script>
+                
+                f3();
+                function f3(){
+                    console.log("inside f3");
+                }
+
+                //f2();
+                var f2 = function(){
+                    console.log("inside f2");
+                }
+
+                var f4 = function(){
+                    console.log("iffe1");
+                }();
+
+                (function(){
+                    console.log("iife2");
+                })();
+
+                (function(){
+                    console.log("iife3");
+                }())
+                
+            </script>
+
+    </body>
+</html>

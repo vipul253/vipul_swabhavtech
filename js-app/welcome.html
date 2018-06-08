@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome</title>
+</head>
+<body>
+    Name: <input type="text" id="1">
+    <button onclick="wish()">wish</button><br>
+    <label type="text" id="2"></label>
+
+    <script>
+        function wish(){
+            var name = document.getElementById("1").value;
+            elem = document.createElement("label");
+            elem.innerHTML = "hello " +name+"</br>";
+            document.body.insertBefore(elem,document.getElementById("2"));
+        }
+    </script>
+</body>
+</html>

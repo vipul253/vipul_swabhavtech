@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<button onclick="functionStatement()">functionStatement</button><br>
+<button onclick="functionExpression()">functionExpression</button><br>
+
+<script>
+
+functionStatement();
+
+function functionStatement() {
+  alert("function statement");
+}
+
+var functionExpression = function() {
+    alert("anonymous function expression");
+};
+ 
+(function sayHello() {
+    alert("IIFE");
+})();
+
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>nameSpacePollution</title>
+    <script>
+        function customer (firstName, lastName)  {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.getFullName = function () {
+                return this.firstName + " " + this.lastName;
+            }
+        }
+    </script>
+
+    <script>
+        var myNameSpace = myNameSpace || {};
+        myNameSpace.script1 = myNameSpace.script1 || {};
+
+        myNameSpace.script1.customer = function (firstName, middleName, lastName) {
+            this.firstName = firstName;
+            this.middleName = middleName;
+            this.lastName = lastName;
+
+            this.getFullName = function ()  {
+                return this.firstName + " " + this.middleName + " " + this.lastName;
+            }
+            return this
+        }
+    </script>
+</head>
+<body>
+    
+        <div id="resultDiv"></div>
+        <script type="text/javascript">
+            document.getElementById("resultDiv").innerHTML = new customer("firstname", "lastname").getFullName();
+        </script>
+
+</body>
+</html>

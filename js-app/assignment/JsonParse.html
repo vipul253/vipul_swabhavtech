@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Created Object from JSON String</h2>
+
+<p id="result"></p>
+
+<script>
+
+var obj = JSON.parse('{ "name":"vipul", "age":22, "city":"mumbai"}');
+document.getElementById("result").innerHTML = obj.name + ", " + obj.age+", "+ obj.city;
+
+</script>
+
+</body>
+</html>

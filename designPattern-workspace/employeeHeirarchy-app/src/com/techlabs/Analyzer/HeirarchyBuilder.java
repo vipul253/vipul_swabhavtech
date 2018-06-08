@@ -9,9 +9,10 @@ public class HeirarchyBuilder {
 
 	// EmployeeParser parser = new EmployeeParser(new WEBLoader(
 	// "https://swabhav-tech.firebaseapp.com/emp.txt"));
-	private HashMap<Integer, Employee> employeeMap = new HashMap<Integer, Employee>();
+	
 	private EmployeeParser parser = new EmployeeParser(new FileLoader(
 			"Data/data.txt"));
+	private HashMap<Integer, Employee> employeeMap = new HashMap<Integer, Employee>();
 	private HashSet<EmployeeDTO> employeeDTO = parser.getEmpList();
 	private List<Employee> employeeList = new ArrayList<Employee>();
 	private Employee CEO;
@@ -33,14 +34,14 @@ public class HeirarchyBuilder {
 		}
 
 		for (Employee e : employeeList) {
-			if(!employeeMap.containsKey(e)){
+			if (!employeeMap.containsKey(e)) {
 				employeeMap.put(e.getEmployeeID(), e);
 			}
 		}
-		
+
 		for (Employee e : employeeList) {
-			if(employeeMap.containsKey(e.getManagerID())){
-			employeeMap.get(e.getManagerID()).addReportee(e);
+			if (employeeMap.containsKey(e.getManagerID())) {
+				employeeMap.get(e.getManagerID()).addReportee(e);
 			}
 		}
 	}
@@ -52,9 +53,8 @@ public class HeirarchyBuilder {
 	public Employee getHead() {
 		return CEO;
 	}
-	
-	public Map<Integer,Employee> getMap(){
+
+	public Map<Integer, Employee> getMap() {
 		return employeeMap;
 	}
-	
 }
