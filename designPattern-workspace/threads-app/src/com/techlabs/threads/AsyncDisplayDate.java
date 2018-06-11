@@ -19,5 +19,4 @@ public class AsyncDisplayDate implements Runnable {
 			System.out.println(dateFormat.format(cal.getTime()));
 		}
 	}
-
 }

@@ -6,6 +6,7 @@ public class ThreadsTest {
 
 	public static void main(String[] args) {
 		
-		MyFrame f1 = new MyFrame();		
+		MyFrame f1 = new MyFrame();
+		f1.setVisible(true);
 	}
 }

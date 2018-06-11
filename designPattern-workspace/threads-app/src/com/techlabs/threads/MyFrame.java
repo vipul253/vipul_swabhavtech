@@ -28,7 +28,6 @@ public class MyFrame extends JFrame implements ActionListener {
 		this.add(showDateBtn);
 		this.add(asyncBtn);
 		this.add(wishBtn);
-		this.setVisible(true);
 	}
 
 	@Override

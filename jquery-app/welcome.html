@@ -2,20 +2,34 @@
 <html>
 <head>
 <title>Welcome</title>
-<script src="jquery.min.js"></script>
+<script src="jquery.min.js">
+//<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+    <script>
+        $(document).ready(function(){
+            $("#name").focus(function(){
+                $(this).css("background-color","#f3f37f");
+            });
+
+            $("input").blur(function(){
+                $(this).css("background-color", "#ffffff");
+            });
+
+            $("#btn").click(function(){
+                if($("#name").val()!="") {
+                    var name = $("#name").val();
+                    $("#wishbox").html("hello "+ name);
+                }
+                else {
+                    $("#wishbox").html("enter name!!");
+                }
+            });
+        });
+    </script>
 </head>
 <body> 
-    <p>If you click on me, I will disappear.</p>
-    <p>Click me away!</p>
-    <p>Click me too!</p>
-
-    
-    <script>
-    $(document).ready(function(){
-        $("p").click(function(){
-            $(this).hide();
-        });
-    });
-    </script>
+    Name: <input type="text" id="name" required>
+    <button id="btn">wish</button><br>
+    <label type="text" id="wishbox"></label>
 </body>
 </html>
