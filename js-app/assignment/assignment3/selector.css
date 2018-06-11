@@ -1,0 +1,48 @@
+:root { 
+    background: #9ed0f1;
+}
+
+.center {
+    text-align: center;
+    background-color: #1be64e;
+}
+
+#byID {
+    text-align: right;
+    background-color: #8181f1;
+}
+
+p::before { 
+    content: "Read this: ";
+}
+
+h1{
+    text-align: center;
+    background-color: #7b7d7e;
+}
+
+#link{
+    background-color: #c7f34d;
+}
+
+input:checked {
+    height: 50px;
+    width: 50px;
+}
+
+input:focus {
+    background-color: #f3f37f;
+}
+
+#link:hover{
+    color: #dbaac5;
+}
+
+a:visited { 
+    color: #c81af3;
+}
+
+::selection {
+    color: #4141ee;
+    background: #ffff00;
+}

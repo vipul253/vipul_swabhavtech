@@ -1,0 +1,39 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+
+<video id="vid" width="400">
+<source src="sample.mp4" type="video/mp4">
+</video><br>
+<button id="play">play</button>
+<button id="pause">pause</button>
+<button id="stop">stop</button>
+
+<script>
+    "use strict";
+    (function(){
+
+        document.getElementById("play").addEventListener('click',myPlay);
+        document.getElementById("stop").addEventListener('click',myStop);
+        document.getElementById("pause").addEventListener('click',myPause);
+        var video=document.getElementById("vid");
+
+        function myPlay(){
+            video.play();
+        }
+        
+        function myPause(){
+            video.pause();
+        }
+
+        function myStop(){
+            video.load();
+        }
+        
+
+
+
+    }())
+</script>
+</body> 
+</html>

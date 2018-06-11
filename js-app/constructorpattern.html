@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+    "use strict";
+    function Employee(rollno,name){
+        var _rollno,
+            _name;
+        if(rollno>0 && name.length>0){
+            _rollno=rollno;
+            _name=name;
+        }
+        else {
+            throw "invalid in";
+        }
+
+        this.getName = function() {
+            return _name;
+        }
+
+        this.getRollno = function() {
+            return _rollno;
+        }
+    }
+
+    var emp = new Employee(101,"vip");
+    console.log(emp);
+    console.log(emp.getName());
+    console.log(emp.getRollno());
+
+    var e2 = new Employee(0,"vipul");
+    console.log(e2);
+    </script>
+
+</body>
+</html>

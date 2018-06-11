@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<input type="text" id="txt">
+<div id="list"></div>
+
+<p id="demo"></p>
+
+<script>
+    "use strict";
+    (function(){
+        var txt = document.getElementById("txt");
+        var list=document.getElementById("list");
+        txt.addEventListener('keypress',putData);
+        
+        var data = JSON.parse(localStorage.getItem("data")) || [];
+        showList();
+        function putData() {
+            if(event.which===13){
+                data.push(txt.value);
+                localStorage.setItem("data",JSON.stringify(data));
+                showList();
+            }
+        }
+
+        function showList() {
+            list.innerHTML="";
+            for(var i=data.length-1;i>=0;i--){
+                list.innerHTML=list.innerHTML+"<button id='"+i+"' value='"+i+"'>x</button><label>"+data[i]+"</label><br>";
+            }
+            for(var i=0;i<data.length;i++){
+                document.getElementById(i).addEventListener('click',remove);
+            }
+        }
+
+        function remove() {
+            data.splice(this.value,1);
+            showList();
+            localStorage.setItem("data",JSON.stringify(data));
+        }
+    }())
+
+</script>
+
+</body>
+</html>

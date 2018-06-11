@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+    "use strict";
+    function Account(number,name,balance){
+        var _number,
+            _name,
+            _balance;
+
+        if(number>0 && name.length>0 && balance>0){
+            _number=number;
+            _name=name;
+            _balance=balance;
+        }
+        else {
+            throw "invalid in";
+        }
+
+        this.setName = function(name) {
+            _name=name;
+        }
+
+        this.setNumber = function(number) {
+            _number=number;
+        }
+
+        this.getName = function() {
+            return _name;
+        }
+
+        this.getNumber = function() {
+            return _number;
+        }
+
+        this.getBalance = function() {
+            return _balance;
+        }
+
+        this.deposit = function(amount) {
+            _balance+=amount;
+        }
+
+        this.withdraw = function(amount) {
+            if(_balance-amount>0){
+                _balance-=amount;
+            }
+            else {
+                throw "insufficient balance!"
+            }
+        }
+    }
+
+    var acc = new Account(101,"vip",1000);
+    console.log(acc);
+    console.log(acc.getNumber());
+    console.log(acc.getName());
+    console.log("initial:"+acc.getBalance());
+    acc.deposit(2000);
+    console.log("after deposit:"+acc.getBalance());
+    acc.withdraw(1000);
+    console.log("after withdrawal:"+acc.getBalance());
+    acc.withdraw(2001);
+    console.log("initial:"+acc.getBalance());
+
+
+
+    </script>
+
+</body>
+</html>

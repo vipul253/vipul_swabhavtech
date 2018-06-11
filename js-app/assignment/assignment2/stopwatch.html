@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<label id="txt">00:00:00</label>
+<button id="start">start</button>
+<button id="pause">pause</button>
+<button id="stop">stop</button>
+
+<script>
+    "use strict";
+    (function(){
+        document.getElementById("start").addEventListener('click',startCount);
+        document.getElementById("stop").addEventListener('click',stopCount);
+        document.getElementById("pause").addEventListener('click',pauseCount);
+
+        var m = 0;
+        var s = 0;
+        var c = 0;
+        var t = 0;
+        var display = document.getElementById("txt");
+        var timer_on=0;
+
+        function timedCount() {
+           display.innerHTML= checkZero(m)+":"+checkZero(s)+":"+checkZero(c);
+            c = c + 1;
+            if(c>10){
+                c=0;
+                s+=1;
+            }
+            if(s>59){
+                s=0;
+                m+=1;
+            }
+            t = setTimeout(timedCount, 85);
+        }
+
+        function startCount() {
+            if(!timer_on){
+                timedCount();
+                timer_on=1;
+            }
+                
+        }
+
+        function pauseCount() {
+            clearTimeout(t);
+            timer_on=0;
+        }
+
+        function stopCount() {
+            clearTimeout(t);
+            timer_on=0;
+            c=s=m=0;
+        }
+
+        function checkZero(i) {
+            if (i<10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+    }())
+</script>
+
+</body>
+</html>

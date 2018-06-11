@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<script>
+    "use strict";
+    var makeCalculator = function(){
+        var obj={};
+        var company = "swabhavTech";
+        var dev = "vip";
+        obj.cubeEven = function(num){
+            if(num%2==0){
+                return num*num*num;
+            }
+           throw "not even";
+        }
+
+        obj.getCompany=function() {
+            return company;
+        }
+
+        obj.getDev=function() {
+            return dev;
+        }
+        return obj;
+    }
+
+    var calc=makeCalculator();
+</script>
+<script>
+    var makeStudent=function(){
+        var student = {};
+        var _rollno;
+        var _name;
+
+        student.getDetails = function(){
+            return "Name:"+_name+" Rollno:"+_rollno;
+        }
+
+        student.setName = function(n){
+            _name=n;
+        }
+
+        student.setRollno= function(roll){
+            if(roll>0){
+                _rollno=roll;
+            }
+            else {
+            throw "invalid roll";
+            }
+        }
+
+        student.getRoll = function(){
+            return _rollno;
+        }
+
+        student.getName = function(){
+            return _name;
+        }
+        return student;
+    }
+
+    var s1 = makeStudent();
+    s1.setName("vip");
+    s1.setRollno(10);
+    console.log(s1);
+    console.log(s1.getDetails());
+</script>
+
+</body>
+</html>

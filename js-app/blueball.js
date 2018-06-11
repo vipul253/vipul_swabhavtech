@@ -25,22 +25,20 @@
             if (count > 0) {
                 if (this.value == rand) {
                     this.setAttribute("style", "background-color: #3c47e4");
-                    setTimeout(2000, clear);
+                    clear();
                     alert("yow won!!");
                     makeButtons();
                 }
                 if (this.value > rand) {
                     this.setAttribute("style", "background-color: #0ae40a");
-
+                    count--;
                 }
                 else if (this.value < rand) {
                     this.setAttribute("style", "background-color: #f5091c");
-
+                    count--;
                 }
-                count--;
             }
             if (count <= 0) {
-
                 alert("you loose!!");
                 makeButtons();
             }

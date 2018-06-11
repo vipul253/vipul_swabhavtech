@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+    "use strict";
+    var dataService = function(){
+        
+        var service = {};
+        service.getData = function(){
+            return Math.random()*10;
+        }
+        
+        service.getDataFalseAsync = function(callback) {
+            var r = Math.random()*100;
+            if(r>50){
+                callback("success "+r);
+            }
+            else {
+                callback("error invalid op");
+            }
+        }
+        
+        service.getDataTrueAsync = function(callback) {
+            var r = Math.random()*100;
+            setTimeout(function(r){
+
+                if(r>50){
+                callback("success "+r);
+                }
+                
+            },0);
+        }
+    return service;
+    }();
+
+    var d = dataService.getData()
+    console.log(d);
+    dataService.getDataFalseAsync(function(r){
+        console.log(r);
+    });
+
+    dataService.getDataTrueAsync(function(r){
+        console.log(r);
+    });
+    console.log("end of script");
+    </script>
+
+</body>
+</html>

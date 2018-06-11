@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+
+    <div id="questions" style="border:2px solid; padding: 10px;"></div><br>
+    <button id="btn">check score</button><br>
+    <label id="result"></label>
+
+    <script src="questions.js"></script>
+
+    <script>
+        (function(){
+            document.getElementById("btn").addEventListener('click', checkAns);
+            var questionBox = document.getElementById("questions");
+
+            var score = 0;
+            var ranNums = getRandom([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            questionBox.innerHTML = "";
+            for (var i = 1; i <= 5; i++) {
+                var rand = ranNums[i];
+                questionBox.innerHTML += "<div><label>"+i+ ".</label>" + "<label>" + data[rand].text + "</label><br>" +
+                    "<input type='radio' name='" + rand + "' value='" + data[rand].options.a + "'>" + data[rand].options.a + "<br>" +
+                    "<input type='radio' name='" + rand + "' value='" + data[rand].options.b + "'>" + data[rand].options.b + "<br>" +
+                    "<input type='radio' name='" + rand + "' value='" + data[rand].options.c + "'>" + data[rand].options.c + "<br>" +
+                    "<input type='radio' name='" + rand + "' value='" + data[rand].options.d + "'>" + data[rand].options.d + "<br><hr></div>";
+            }
+
+            function checkAns() {
+                for (var i = 1; i <= 5; i++) {
+                    var rand = ranNums[i];
+                    var options = document.getElementsByName(rand);
+                    var answer;
+                    for (var j = 0; j < options.length; j++) {
+                        if (options[j].checked) {
+                            answer = options[j].value;
+                        }
+                    }
+                    if (answer == data[rand].answer) {
+                        score = score + 1;
+                    }
+                }
+                document.getElementById("result").innerHTML = "your score is " + score + "/5";
+                score = 0;
+
+            }
+
+            function getRandom(array) {
+                var i = array.length;
+                var j = 0;
+                var temp;
+
+                while (i--) {
+                    j = Math.floor(Math.random() * (i + 1));
+                    temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+                return array;
+            }
+        }())
+    </script>
+
+</body>
+
+</html>

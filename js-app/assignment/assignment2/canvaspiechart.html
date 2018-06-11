@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="300" height="300" style="border:1px solid #000000;">
+</canvas>
+
+<script>
+    "use strict";
+    (function(){
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    
+    var lastend = 0; //3.1459 to start from 9clock
+    var data = [20, 80];
+    var total = 0;
+    var color = ['blue','red'];
+
+    for (var e = 0; e < data.length; e++) {
+        total += data[e];
+    }
+
+    for (var i = 0; i < data.length; i++) {
+        ctx.fillStyle = color[i];
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2, canvas.height / 2);
+        ctx.arc(canvas.width / 2, canvas.height / 2, canvas.height / 2, lastend, lastend + (Math.PI * 2 * (data[i] / total)), false);
+        ctx.lineTo(canvas.width / 2, canvas.height / 2);
+        ctx.fill();
+        lastend += Math.PI * 2 * (data[i] / total);
+    }
+}())
+</script>
+</body>
+</html>
