@@ -26,7 +26,7 @@
                 for(var j=1;j<=optionsLength;j++){
                     questionBox.innerHTML +="<input type='radio' name='" + rand + "' value='" + data[rand].options[j] + "'>" + data[rand].options[j] + "<br>";
                 }
-                    
+                questionBox.innerHTML += "<hr>";
             }
 
             function checkAns() {
