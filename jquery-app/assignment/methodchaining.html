@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#btn").click(function () {
+                $("#p1").css("color", "red")
+                    .css("display", "inline-block")
+                    .css("background", "#b3b3ff")
+                    .animate({width: "100%"})
+                    .slideUp(1000)
+                    .slideDown(1000)
+                    .animate({width: "100px"});
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <p id="p1">sample text</p>
+    <br>
+    <button id="btn">slide n make red</button>
+</body>
+
+</html>

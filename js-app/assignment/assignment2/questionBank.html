@@ -6,13 +6,15 @@
 
 <body>
 
-    <div id="questions" style="border:2px solid; padding: 10px;"></div><br>
-    <button id="btn">check score</button><br>
+    <div id="questions" style="border:2px solid; padding: 10px;"></div>
+    <br>
+    <button id="btn">check score</button>
+    <br>
     <label id="result" style="font-size: 30px"></label>
 
     <script src="qb.js"></script>
     <script>
-        (function(){
+        (function () {
             document.getElementById("btn").addEventListener('click', checkAns);
             var questionBox = document.getElementById("questions");
 
@@ -22,9 +24,10 @@
             for (var i = 1; i <= 5; i++) {
                 var rand = ranNums[i];
                 var optionsLength = getOptionCount(data[rand].options);
-                questionBox.innerHTML += "<label>"+i+ ".</label>" + "<label>" + data[rand].text + "</label><br>";
-                for(var j=1;j<=optionsLength;j++){
-                    questionBox.innerHTML +="<input type='radio' name='" + rand + "' value='" + data[rand].options[j] + "'>" + data[rand].options[j] + "<br>";
+                questionBox.innerHTML += "<label>" + i + ".</label>" + "<label>" + data[rand].text + "</label><br>";
+                for (var j = 1; j <= optionsLength; j++) {
+                    questionBox.innerHTML += "<input type='radio' name='" + rand +
+                        "' value='" + data[rand].options[j] + "'>" + data[rand].options[j] + "<br>";
                 }
                 questionBox.innerHTML += "<hr>";
             }
@@ -45,7 +48,6 @@
                 }
                 document.getElementById("result").innerHTML = "your score is " + score + "/5";
                 score = 0;
-
             }
 
             function getRandom(array) {
@@ -62,11 +64,11 @@
                 return array;
             }
 
-            function getOptionCount(opt){
+            function getOptionCount(opt) {
                 var count = 0;
-                for(var k in opt){
-                    if(opt.hasOwnProperty(k)){
-                        count+=1;
+                for (var k in opt) {
+                    if (opt.hasOwnProperty(k)) {
+                        count += 1;
                     }
                 }
                 return count;
@@ -75,4 +77,5 @@
     </script>
 
 </body>
+
 </html>
