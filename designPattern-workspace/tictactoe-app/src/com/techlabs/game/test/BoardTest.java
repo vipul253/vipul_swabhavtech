@@ -25,6 +25,7 @@ public class BoardTest {
 		testBoard.setMark(Mark.X, 8);
 		
 		for(int i=0;i<9;i++){
+			System.out.println(testBoard.getMarkAtPos(i));
 			assertTrue(testBoard.getMarkAtPos(i)==Mark.X);
 		}
 	}
@@ -44,9 +45,9 @@ public class BoardTest {
 		testBoard.setMark(Mark.X, 4);
 		testBoard.setMark(Mark.X, 5);
 		testBoard.setMark(Mark.X, 6);
-		testBoard.setMark(Mark.X, 7);
+		//testBoard.setMark(Mark.X, 7);
 		testBoard.setMark(Mark.X, 8);
-		assertTrue(testBoard.isFull());
+		assertFalse(testBoard.isFull());
 		
 	}
 	

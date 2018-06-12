@@ -4,7 +4,7 @@ public class GameAnalyser {
 	
 	private Board board;
 	private State state;
-	private Mark mark=null;
+	private Mark mark;
 
 	public GameAnalyser(Board board) {
 		this.board = board;
@@ -22,43 +22,48 @@ public class GameAnalyser {
 				return mark;
 			}
 		}
-		return mark;
+		return null;
 	}
 
 	public Mark checkVertical() {
 		for(int i=0;i<3;i++){
 			mark=this.board.getMarkAtPos(i);
-			if(mark.equals(this.board.getMarkAtPos(i+3))&&mark.equals(this.board.getMarkAtPos(i+6))&&mark!=Mark.EMPTY){
-				return mark;
+			if(mark!=Mark.EMPTY){
+				if(mark==this.board.getMarkAtPos(i+3)&&mark==this.board.getMarkAtPos(i+6)){
+					return mark;
+				}
 			}
 		}
-		return mark;
+		return null;
 	}
 
 	public Mark checkDiagonal() {
 		mark = this.board.getMarkAtPos(4);
-		if (mark == this.board.getMarkAtPos(0)
-				&& mark == this.board.getMarkAtPos(8)){
-			return mark;
+		if(mark!=Mark.EMPTY){
+			if(mark==this.board.getMarkAtPos(0)&&mark==this.board.getMarkAtPos(8)){
+				return mark;
+			}
+			if(mark==this.board.getMarkAtPos(0)&&mark==this.board.getMarkAtPos(8)){
+				return mark;
+			}
 		}
-		if (mark == this.board.getMarkAtPos(2)
-				&& mark == this.board.getMarkAtPos(6)) {
-			return mark;
-		}
-		else
-			return mark;
+		return null;
 	}
 	
 	public State checkState(){
 		Mark mark;
-		if((mark=this.checkHorizontal())==null)
-			if((mark=this.checkVertical())==null)
-				if((mark=this.checkDiagonal())==null)
-					if(this.board.isFull())
+		if((mark=this.checkHorizontal())==null){
+			if((mark=this.checkVertical())==null){
+				if((mark=this.checkDiagonal())==null){
+					if(this.board.isFull()){
 						return State.DRAW;
+					}
+				}
+			}
+		}
 		if(mark==Mark.X)
 			return State.CROSS_WON;
-		else if(mark==Mark.O)
+		if(mark==Mark.O)
 			return State.NOUGHT_WON;
 		return State.PLAYING;
 	}

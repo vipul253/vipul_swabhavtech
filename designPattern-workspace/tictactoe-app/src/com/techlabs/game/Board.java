@@ -5,8 +5,8 @@ public class Board {
 	private Cell[] grid;
 	
 	public Board(){
-		grid = new Cell[10];
-		for(int i=0;i<grid.length;i++){
+		grid = new Cell[11];
+		for(int i=0;i<grid.length-1;i++){
 			this.grid[i]=new Cell();
 		}
 	}
@@ -16,7 +16,7 @@ public class Board {
 	}
 	
 	public boolean isEmpty(){
-		for(int i=0;i<grid.length;i++){
+		for(int i=0;i<grid.length-2;i++){
 			if(!(grid[i].cellState().equals(Mark.EMPTY))){
 				return false;
 			}
@@ -25,16 +25,16 @@ public class Board {
 	}
 	
 	public boolean isFull(){
-		for(int i=0;i<grid.length-1;i++){
-			if(!(grid[i].cellState().equals(Mark.EMPTY))){
-				return true;
+		for(int i=0;i<grid.length-2;i++){
+			if(grid[i].cellState()==Mark.EMPTY){
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	public Mark getMarkAtPos(int pos){
-		if(pos<grid.length-1)
+		if(pos<grid.length-2)
 			return this.grid[pos].cellState();
 		else
 			return null;

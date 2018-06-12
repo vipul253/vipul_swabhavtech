@@ -19,12 +19,14 @@ public class GameUI extends JFrame implements ActionListener {
 	private JButton btn7 = new JButton("7");
 	private JButton btn8 = new JButton("8");
 	private JButton btn9 = new JButton("9");
+	private JButton start = new JButton("start new game");
+	
 	private Game g1;
 	
 	
 	public GameUI(){
 		this.setLayout(null);
-		this.setBounds(600, 600, 250, 300);
+		this.setBounds(600, 600, 250, 350);
 		
 		btn1.setBounds(30, 20, 50, 50);
 		btn2.setBounds(90, 20, 50, 50);
@@ -36,6 +38,7 @@ public class GameUI extends JFrame implements ActionListener {
 		btn8.setBounds(90, 140, 50, 50);
 		btn9.setBounds(150, 140, 50, 50);
 		tf.setBounds(30, 200, 170, 30);
+		start.setBounds(30, 240, 170, 30);
 		
 		btn1.addActionListener(this);
 		btn2.addActionListener(this);
@@ -46,6 +49,7 @@ public class GameUI extends JFrame implements ActionListener {
 		btn7.addActionListener(this);
 		btn8.addActionListener(this);
 		btn9.addActionListener(this);
+		start.addActionListener(this);
 		
 		this.add(btn1);
 		this.add(btn2);
@@ -57,6 +61,7 @@ public class GameUI extends JFrame implements ActionListener {
 		this.add(btn8);
 		this.add(btn9);
 		this.add(tf);
+		this.add(start);
 		
 		g1 = new Game();
 		g1.start();
@@ -111,6 +116,7 @@ public class GameUI extends JFrame implements ActionListener {
 		Cell[] grid = board.getGrid();
 		int pos = Integer.parseInt(btn.getText())-1;
 		btn.setText(grid[pos].getMark());
+		btn.setEnabled(false);
 		tf.setText(""+g1.getAnalyser().checkState());
 		
 	}

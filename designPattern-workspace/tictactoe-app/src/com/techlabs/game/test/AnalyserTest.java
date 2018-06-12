@@ -24,8 +24,8 @@ public class AnalyserTest {
 		Board testBoard = new Board();
 		GameAnalyser analyser = new GameAnalyser(testBoard);
 		testBoard.setMark(Mark.X, 2);
-		testBoard.setMark(Mark.O, 5);
-		testBoard.setMark(Mark.O, 8);
+		testBoard.setMark(Mark.X, 5);
+		testBoard.setMark(Mark.X, 8);
 		assertTrue(analyser.checkVertical()==Mark.X);
 		
 	}
@@ -34,9 +34,9 @@ public class AnalyserTest {
 	public void DiagonalTest(){
 		Board testBoard = new Board();
 		GameAnalyser analyser = new GameAnalyser(testBoard);
-		testBoard.setMark(Mark.X, 2);
+		testBoard.setMark(Mark.X, 0);
 		testBoard.setMark(Mark.X, 4);
-		testBoard.setMark(Mark.X, 6);
+		testBoard.setMark(Mark.X, 8);
 		assertTrue(analyser.checkDiagonal()==Mark.X);
 	}
 	
