@@ -38,11 +38,13 @@ public class GameAnalyser {
 	public Mark checkDiagonal() {
 		mark = this.board.getMarkAtPos(4);
 		if (mark == this.board.getMarkAtPos(0)
-				&& mark == this.board.getMarkAtPos(8))
+				&& mark == this.board.getMarkAtPos(8)){
 			return mark;
-		else if (mark == this.board.getMarkAtPos(2)
-				&& mark == this.board.getMarkAtPos(6))
+		}
+		if (mark == this.board.getMarkAtPos(2)
+				&& mark == this.board.getMarkAtPos(6)) {
 			return mark;
+		}
 		else
 			return mark;
 	}
