@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script>
+        "use strict";
+        var dataService = function () {
+
+            var service = {};
+
+            service.getDataAsync = function () {
+                var p = new Promise(function (resolve, reject) {
+                    var r = Math.random() * 10;
+                    if (r > 5) {
+                        resolve(r);
+                    }
+                    else {
+                        var e = new Error("error occured");
+                        resolve(e);
+                    }
+                   
+                });
+                return p;
+            }
+            return service;
+        }();
+
+        
+        function fnSuccess(d){
+            console.log(d);
+        }
+
+        function fnError(d){
+            console.log(d)
+        }
+
+        dataService.getDataAsync().then(fnSuccess,fnError);
+        console.log("end of script");
+
+    </script>
+
+</body>
+
+</html>

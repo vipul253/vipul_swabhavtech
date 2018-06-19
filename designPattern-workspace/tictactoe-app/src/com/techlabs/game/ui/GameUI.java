@@ -9,116 +9,118 @@ import com.techlabs.game.*;
 public class GameUI extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
-	final JTextField tf = new JTextField();
-	private JButton btn1 = new JButton("1");
-	private JButton btn2 = new JButton("2");
-	private JButton btn3 = new JButton("3");
-	private JButton btn4 = new JButton("4");
-	private JButton btn5 = new JButton("5");
-	private JButton btn6 = new JButton("6");
-	private JButton btn7 = new JButton("7");
-	private JButton btn8 = new JButton("8");
-	private JButton btn9 = new JButton("9");
+	final JLabel tf = new JLabel();
+	final JLabel p1 = new JLabel();
+	final JLabel p2 = new JLabel();
+	private JButton[] btn = new JButton[9];
 	private JButton start = new JButton("start new game");
 	
 	private Game g1;
 	
 	
 	public GameUI(){
+		
 		this.setLayout(null);
-		this.setBounds(600, 600, 250, 350);
+		this.setBounds(600, 600, 250, 400);
 		
-		btn1.setBounds(30, 20, 50, 50);
-		btn2.setBounds(90, 20, 50, 50);
-		btn3.setBounds(150, 20, 50, 50);
-		btn4.setBounds(30, 80, 50, 50);
-		btn5.setBounds(90, 80, 50, 50);
-		btn6.setBounds(150, 80, 50, 50);
-		btn7.setBounds(30, 140, 50, 50);
-		btn8.setBounds(90, 140, 50, 50);
-		btn9.setBounds(150, 140, 50, 50);
+		for(int i=0;i<btn.length;i++){
+			btn[i] = new JButton(""+(i+1));
+			btn[i].addActionListener(this);
+			btn[i].setEnabled(false);
+			this.add(btn[i]);
+		}
+		
+		btn[0].setBounds(30, 20, 50, 50);
+		btn[1].setBounds(90, 20, 50, 50);
+		btn[2].setBounds(150, 20, 50, 50);
+		btn[3].setBounds(30, 80, 50, 50);
+		btn[4].setBounds(90, 80, 50, 50);
+		btn[5].setBounds(150, 80, 50, 50);
+		btn[6].setBounds(30, 140, 50, 50);
+		btn[7].setBounds(90, 140, 50, 50);
+		btn[8].setBounds(150, 140, 50, 50);
 		tf.setBounds(30, 200, 170, 30);
-		start.setBounds(30, 240, 170, 30);
+		p1.setBounds(30, 230, 170, 30);
+		p2.setBounds(30, 260, 170, 30);
+		start.setBounds(30, 290, 170, 30);
 		
-		btn1.addActionListener(this);
-		btn2.addActionListener(this);
-		btn3.addActionListener(this);
-		btn4.addActionListener(this);
-		btn5.addActionListener(this);
-		btn6.addActionListener(this);
-		btn7.addActionListener(this);
-		btn8.addActionListener(this);
-		btn9.addActionListener(this);
 		start.addActionListener(this);
 		
-		this.add(btn1);
-		this.add(btn2);
-		this.add(btn3);
-		this.add(btn4);
-		this.add(btn5);
-		this.add(btn6);
-		this.add(btn7);
-		this.add(btn8);
-		this.add(btn9);
+		tf.setText("press start to play");
+		p1.setText("player one: CROSS (X)");
+		p2.setText("player two: NOUGHT (O)");
+		
 		this.add(tf);
-		this.add(start);
-		
-		g1 = new Game();
-		g1.start();
-		tf.setText(""+g1.getAnalyser().checkState());
-		
+		this.add(p1);
+		this.add(p2);
+		this.add(start);		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getSource()==btn1){
+		if(e.getSource()==btn[0]){
 			g1.play(0);
-			display(btn1);
+			display(btn[0]);
 		}
-		else if(e.getSource()==btn2){
+		if(e.getSource()==btn[1]){
 			g1.play(1);
-			display(btn2);
+			display(btn[1]);
 		}
-		else if(e.getSource()==btn3){
+		if(e.getSource()==btn[2]){
 			g1.play(2);
-			display(btn3);
+			display(btn[2]);
 		}
-		else if(e.getSource()==btn4){
+		if(e.getSource()==btn[3]){
 			g1.play(3);
-			display(btn4);
+			display(btn[3]);
 		}
-		else if(e.getSource()==btn5){
+		if(e.getSource()==btn[4]){
 			g1.play(4);
-			display(btn5);
+			display(btn[4]);
 		}
-		else if(e.getSource()==btn6){
+		if(e.getSource()==btn[5]){
 			g1.play(5);
-			display(btn6);
+			display(btn[5]);
 		}
-		else if(e.getSource()==btn7){
+		if(e.getSource()==btn[6]){
 			g1.play(6);
-			display(btn7);
+			display(btn[6]);
 		}
-		else if(e.getSource()==btn8){
+		if(e.getSource()==btn[7]){
 			g1.play(7);
-			display(btn8);
+			display(btn[7]);
 		}
-		else if(e.getSource()==btn9){
+		if(e.getSource()==btn[8]){
 			g1.play(8);
-			display(btn9);
+			display(btn[8]);
 		}
-		
+		if(e.getSource()==start){
+			startNewGame();
+		}
 	}
 	
-	public void display(JButton btn){
+	public void display(JButton button){
 		Board board = g1.getBoard();
 		Cell[] grid = board.getGrid();
-		int pos = Integer.parseInt(btn.getText())-1;
-		btn.setText(grid[pos].getMark());
-		btn.setEnabled(false);
+		int pos = Integer.parseInt(button.getText())-1;
+		button.setText(grid[pos].getMark());
+		button.setEnabled(false);
 		tf.setText(""+g1.getAnalyser().checkState());
-		
+		if(g1.getAnalyser().checkState()!=State.PLAYING){
+			for(int i=0;i<btn.length;i++){
+				btn[i].setEnabled(false);
+			}
+		}
 	}
-
+	
+	public void startNewGame(){
+		g1 = new Game();
+		g1.start();
+		tf.setText("PLAYING");
+		for(int i=0;i<btn.length;i++){
+			btn[i].setText(""+(i+1));
+			btn[i].setEnabled(true);
+		}
+	}
 }

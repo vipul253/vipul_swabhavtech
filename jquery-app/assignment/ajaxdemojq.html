@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <p>
+        <b>Status:</b>
+        <label id="field1"></label>
+    </p>
+    <p>
+        <b>Status text:</b>
+        <label id="field2"></label>
+    </p>
+    <p>
+        <b>Response:</b>
+        <label id="field3"></label>
+    </p>
+
+    <button id="btn">Get XML data</button>
+
+    <script>
+        "use strict";
+        $(document).ready(function () {
+            var link = "note.xml";
+            $("#btn").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: link,
+                    success: function (data,status,jqxhr) {
+                        $("#field1").html(status);
+                        $("#field2").html(data);
+                        $("#field3").html(jqxhr);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

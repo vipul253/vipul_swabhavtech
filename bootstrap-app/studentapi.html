@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>StudentAPI</title>
+    <link rel="stylesheet" type="text/css" href="studentsapi.css">
+    <link rel="stylesheet" type="text/css" href="/bootstrap-app/bootstrap3/css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script src="studentsapi.js">
+    </script>
+</head>
+
+<body>
+    <table id="table" class="table table-responsive table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>roll no.</th>
+                <th>name</th>
+                <th>age</th>
+                <th>email</th>
+                <th>gender</th>
+                <th>date</th>
+                <th>edit</th>
+                <th>delete</th>
+            </tr>
+        </thead>
+        <tbody id="tabledata">
+        </tbody>
+    </table>
+    <label type="text" id="statusbox"></label>
+
+    <hr>
+    <div class="form-group col-sm-4">
+        <div class="form-group">
+            <label for="roll" class="control-label">Student RollNo</label>
+            <input type="number" class="form-control" id="roll" placeholder="roll number">
+        </div>
+        <div class="form-group">
+            <label for="name">Student Name</label>
+            <input type="text" class="form-control" id="name" placeholder="name">
+        </div>
+        <div class="form-group">
+            <label for="age">Student Age</label>
+            <input type="number" class="form-control" id="age" placeholder="age">
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="email">
+        </div>
+        <div class="form-group">
+            <label for="gender" class="radio">Gender:
+                <label for="male">
+                    <input type="radio" id="male" name="gender"> male
+                </label>
+                <label for="female">
+                    <input type="radio" id="female" name="gender"> female
+                </label>
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="date" class="form-inline"> Date
+                <input type="Date" class="form-control" id="date">
+            </label>
+        </div>
+        <div class="form-inline">
+            <button id="addStudentButton" class="btn btn-primary">Add Student</button>
+            <div id="loader" style="display:inline-block"></div>
+        </div>
+    </div>
+</body>
+
+</html>

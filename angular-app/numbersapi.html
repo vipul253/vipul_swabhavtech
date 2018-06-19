@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>numbersapi</title>
+    <script src="angular-1.6.10/angular.js"></script>
+</head>
+
+<body ng-app="numbersapi">
+    <label>Number: </label>
+    <input type="number" name="num" id="in" ng-model="inputNum">
+    <button id="btn1" ng-controller="numbersapiCtrl" ng-click="search()">search</button>
+    <button id="btn2" onclick="alert('hello')">wish</button>
+    <div>
+        <ul id="list">
+        </ul>
+    </div>
+
+    <script>
+        "use strict";
+        angular.module('numbersapi', []).controller('numbersapiCtrl', function ($scope, $http) {
+            $scope.search = function () {
+                console.log($scope.inputNum);
+                $http.get("http://numbersapi.com/" + $scope.inputNum)
+                    .then(function (x) {
+                        console.log(x.data);
+                    });
+            }
+        });
+    </script>
+</body>
+
+</html>

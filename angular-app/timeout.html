@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="angular-1.6.10/angular.js"></script>
+</head>
+
+<body ng-app="employee">
+    <h3>Employee</h3>
+    <section ng-controller="employeeController">
+        <h4>
+            name: {{ developer }}
+        </h4>
+        <h4>
+            company: {{ company }}
+        </h4>
+    </section>
+
+    <script>
+        angular.module('employee', []).controller('employeeController', function ($scope, $timeout) {
+            $scope.developer = "vipul";
+            $scope.company = "swabhavTech";
+            $timeout(function () {
+                $scope.company = "AurionPro";
+            }, 2000);
+        });
+    </script>
+</body>
+
+</html>

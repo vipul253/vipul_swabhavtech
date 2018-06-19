@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+    <label> Select Color</label>
+    </br>
+
+    <select id="color">
+        <option value="#">choose color</option>
+        <option value="#ffb3b3">red</option>
+        <option value="#b3b3ff">blue</option>
+        <option value="#b3ffb3">green</option>
+    </select>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#color").change(function(){
+                $("body").css("background-color",this.value);
+            })
+        });
+    </script>
+</body>
+</html>

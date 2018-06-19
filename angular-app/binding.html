@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="angular-1.6.10/angular.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body ng-app="employee" ng-controller="employeeController">
+    <div>
+        <h4>modal to view (1 timen )</h4>
+        {{::id}}
+        <br> {{::name}}
+        <br> {{::role}}
+    </div>
+    <br>
+    <hr>
+    <div>
+        <h4>modal to view (1 way)</h4>
+        {{id}}
+        <br> {{name}}
+        <br> {{role}}
+    </div>
+    <br>
+    <hr>
+    <div>
+        <h4>view to modal (2 way)</h4>
+        <div class="form-group col-sm-4">
+            <label for="1">ID</label>
+            <input type="number" class="form-control" id="1" ng-model="id" />
+            <br>
+            <label for="1">Name</label>
+            <input type="text" class="form-control" id="2" ng-model="name" />
+            <br>
+            <label for="1">Role</label>
+            <input type="text" class="form-control" id="3" ng-model="role" />
+            <br>
+        </div>
+
+    </div>
+
+    <script>
+        angular.module('employee', []).controller('employeeController', function ($scope) {
+            $scope.id = 111;
+            $scope.name = "vipul";
+            $scope.role = "developer";
+        });
+    </script>
+</body>
+
+</html>

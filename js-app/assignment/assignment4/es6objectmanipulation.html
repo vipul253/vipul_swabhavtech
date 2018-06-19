@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script>
+        "use strict";
+        var obj1 = { a: 1, b: 2 }
+        var obj2 = { a: 2, c: 3, d: 4 }
+        var obj3 = Object.assign(obj1, obj2)
+
+        console.log("using .assign() "+obj3.a);
+
+        const obj4 = { ...obj1, ...obj2 }
+        console.log("using spread operator "+obj4.a);
+
+      
+        const abc2 = { a: 1, b: 2, c: 3, d: 4 }
+        const {
+            a,
+            b,
+            c,
+            d
+        } = abc2
+
+        console.log(" a="+a+" b="+b+" c="+c+" d="+d);
+    </script>
+
+</body>
+
+</html>

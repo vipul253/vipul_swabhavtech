@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script>
+        "use strict";
+        //es5 func
+        function es5Function(num) {
+            return num + 2;
+        }
+        console.log(es5Function(2));
+
+        //es6 func
+        var es6Function = (num) => num / 2
+        console.log(es6Function(2));
+
+        const arrowFunction = () => 2 * 3
+        console.log(arrowFunction());
+
+        const abcFunction = () => {
+            var rand = Math.random()*10;
+            if(rand>5){
+                return "greater than 5";
+            }
+            return "less than 5";
+        }
+        console.log(abcFunction());
+
+    </script>
+
+</body>
+
+</html>

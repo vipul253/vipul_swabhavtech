@@ -1,0 +1,42 @@
+<section>
+    <div class="page-header text-center">
+        <h3>Studient-SPA</h3>
+    </div>
+    <div class="form-group col-sm-4" ng-form="mainForm">
+        <div class="form-group" ng-form="rollForm">
+            <label for="roll" class="control-label">Student RollNo</label>
+            <input type="number" class="form-control" id="roll" placeholder="roll number" name="roll" ng-model="student.rollNo" required/>
+        </div>
+        <div class="form-group" ng-form="nameForm">
+            <label for="name">Student Name</label>
+            <input type="text" class="form-control" id="name" placeholder="name" ng-model="student.name" required>
+        </div>
+        <div class="form-group" ng-form="ageForm">
+            <label for="age">Student Age</label>
+            <input type="number" class="form-control" id="age" placeholder="age" ng-model="student.age" required>
+        </div>
+        <div class="form-group" ng-form="emailForm">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="email" ng-model="student.email" required>
+        </div>
+        <div class="form-group" ng-form="genderForm">
+            <label for="gender" class="radio">Gender:
+                <label for="male">
+                    <input type="radio" id="male" name="gender" ng-model="student.isMale" ng-value="true"> male
+                </label>
+                <label for="female">
+                    <input type="radio" id="female" name="gender" ng-model="student.isMale" ng-value="false"> female
+                </label>
+            </label>
+        </div>
+        <div class="form-group" ng-form="dateForm">
+            <label for="date" class="form-inline"> Date
+                <input type="Date" class="form-control" id="date" ng-model="student.date" required>
+            </label>
+        </div>
+        <div class="form-inline">
+            <button id="addStudentButton" class="btn btn-primary" ng-click="addStudent(student)" ng-value="btnSwitch" 
+                ng-disabled="mainForm.$pristine || mainForm.$invalid || mainForm.$error.required">Add student</button>
+        </div>
+    </div>
+</section>

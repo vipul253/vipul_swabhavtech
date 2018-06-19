@@ -14,7 +14,7 @@
         var list=document.getElementById("list");
         txt.addEventListener('keypress',putData);
         
-        var data = JSON.parse(localStorage.getItem("data")) || [];
+        var data =  [] || JSON.parse(localStorage.getItem("data"));
         showList();
         function putData() {
             if(event.which===13){

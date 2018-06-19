@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script>
+        "use strict";
+        class Car {
+            constructor(carName) { 
+                this.carName = carName;
+                this.currentSpeed = 25;
+            }
+
+            printCurrentSpeed() {
+                console.log(this.carName + ' is going ' + this.currentSpeed + ' kmph.');
+            }
+        }
+
+        class RaceCar extends Car { 
+            constructor(carName, topSpeed) {
+                super(carName);
+                this.topSpeed = topSpeed;
+            }
+
+            goFast() {
+                this.currentSpeed = this.topSpeed;
+            }
+        }
+
+        let stang = new RaceCar('Mustang', 150);
+
+        stang.printCurrentSpeed();
+        stang.goFast();
+        stang.printCurrentSpeed();
+
+    </script>
+
+</body>
+
+</html>

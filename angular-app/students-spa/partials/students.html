@@ -1,0 +1,38 @@
+<section>
+    <div>
+        <table id="table" class="table table-responsive table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>roll no.</th>
+                    <th>name</th>
+                    <th>age</th>
+                    <th>email</th>
+                    <th>gender</th>
+                    <th>date</th>
+                    <th>edit</th>
+                    <th>delete</th>
+                </tr>
+            </thead>
+            <tbody id="tabledata">
+                <tr ng-repeat="student in list track by $index">
+                    <td>{{student.rollNo}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.age}}</td>
+                    <td>{{student.email}}</td>
+                    <td>{{student.isMale?"Male":"Female"}}</td>
+                    <td>{{student.date}}</td>
+                    <td>
+                        <button class="btn btn-warning glyphicon glyphicon-pencil" ng-click="edit(student.rollNo)" 
+                            ng-disabled="isTrue">
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger glyphicon glyphicon-trash" ng-controller="confirmDelete" 
+                            ng-click="" ng-disabled="isTrue">
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="angular-1.6.10/angular.js"></script>
+</head>
+
+<body ng-app="employee" ng-controller="employeeController">
+    <button ng-click="loadProfile()">profile</button>
+    <section ng-show="isVisible">
+        <h4>
+            Name : {{ name }}
+        </h4>
+        <h4>
+            Picture :<br> <img ng-src="{{ pic.src }}" width="20%" height="20%" />
+        </h4>
+    </section>
+
+    <script>
+        angular.module('employee', []).controller('employeeController', ['$scope',function ($scope) {
+            $scope.isVisible=false;
+            $scope.loadProfile = function() {
+                $scope.isVisible=true;
+                $scope.name="vipul";
+                $scope.pic={"src":"resources/a.jpg"}
+            }
+        }]);
+    </script>
+</body>
+
+</html>

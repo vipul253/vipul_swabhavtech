@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <label id="txt">00:00:00</label>
+    <button id="start">start</button>
+    <button id="pause">pause</button>
+    <button id="stop">stop</button>
+
+    <script>
+        "use strict";
+        $(document).ready(function () {
+            $("#start").click(function () {
+                if (!timer_on) {
+                    timedCount();
+                    timer_on = 1;
+                }
+            });
+
+            $("#stop").click(function () {
+                clearTimeout(t);
+                timer_on = 0;
+                c = s = m = 0;
+            });
+            
+            $("#pause").click(function () {
+                clearTimeout(t);
+                timer_on = 0;
+            });
+
+            var m = 0,
+                s = 0,
+                c = 0,
+                t = 0,
+                timer_on = 0;
+
+            function timedCount() {
+                $("#txt").html(checkZero(m) + ":" + checkZero(s) + ":" + checkZero(c));
+                c = c + 1;
+                if (c > 10) {
+                    c = 0;
+                    s += 1;
+                }
+                if (s > 59) {
+                    s = 0;
+                    m += 1;
+                }
+                t = setTimeout(timedCount, 85);
+            }
+
+            function checkZero(i) {
+                if (i < 10) {
+                    i = "0" + i;
+                }
+                return i;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

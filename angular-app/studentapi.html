@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>studentapi</title>
+    <script src="angular-1.6.10/angular.js"></script>
+    <link rel="stylesheet" type="text/css" href="/bootstrap-app/bootstrap3/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="studentapi.css">
+    
+</head>
+
+<body ng-app="studentapi" ng-controller="studentapiCtrl" class="well">
+    <div class="page-header text-center text-light bg-dark">
+        <h3>Studientapi</h3>
+    </div>
+    <div class="form-group col-sm-4">
+        <div class="form-group">
+            <label for="roll" class="control-label">Student RollNo</label>
+            <input type="number" class="form-control" id="roll" placeholder="roll number" ng-model="student.rollNo">
+        </div>
+        <div class="form-group">
+            <label for="name">Student Name</label>
+            <input type="text" class="form-control" id="name" placeholder="name" ng-model="student.name">
+        </div>
+        <div class="form-group">
+            <label for="age">Student Age</label>
+            <input type="number" class="form-control" id="age" placeholder="age" ng-model="student.age">
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="email" ng-model="student.email">
+        </div>
+        <div class="form-group">
+            <label for="gender" class="radio">Gender:
+                <label for="male">
+                    <input type="radio" id="male" name="gender" ng-model="student.isMale" ng-value="true"> male
+                </label>
+                <label for="female">
+                    <input type="radio" id="female" name="gender" ng-model="student.isMale" ng-value="false"> female
+                </label>
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="date" class="form-inline"> Date
+                <input type="Date" class="form-control" id="date" ng-model="student.date">
+            </label>
+        </div>
+        <div class="form-inline">
+            <button id="addStudentButton" class="btn btn-primary" ng-click="btnSwitch ? addStudent(student):editStudent(student.rollNo)"
+                ng-value="btnSwitch">{{btntxt}}</button>
+            <div id="loader" style="display:inline-block" ng-hide="isLoading"></div>
+        </div>
+    </div>
+    <div>
+        <table id="table" class="table table-responsive table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>roll no.</th>
+                    <th>name</th>
+                    <th>age</th>
+                    <th>email</th>
+                    <th>gender</th>
+                    <th>date</th>
+                    <th>edit</th>
+                    <th>delete</th>
+                </tr>
+            </thead>
+            <tbody id="tabledata">
+                <tr ng-repeat="student in list track by $index">
+                    <td>{{student.rollNo}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.age}}</td>
+                    <td>{{student.email}}</td>
+                    <td>{{student.isMale?"Male":"Female"}}</td>
+                    <td>{{student.date | date}}</td>
+                    <td>
+                        <button class="btn btn-warning glyphicon glyphicon-pencil" ng-click="edit(student.rollNo)" ng-disabled="isTrue">
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger glyphicon glyphicon-trash" ng-controller="confirmDelete"
+                            ng-click="showConfirm(student.rollNo)" ng-disabled="isTrue">
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="studentapi.js">
+    </script>
+</body>
+
+</html>

@@ -43,7 +43,7 @@ public class GameAnalyser {
 			if(mark==this.board.getMarkAtPos(0)&&mark==this.board.getMarkAtPos(8)){
 				return mark;
 			}
-			if(mark==this.board.getMarkAtPos(0)&&mark==this.board.getMarkAtPos(8)){
+			if(mark==this.board.getMarkAtPos(2)&&mark==this.board.getMarkAtPos(6)){
 				return mark;
 			}
 		}
