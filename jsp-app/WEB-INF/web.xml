@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>welcome.jsp</welcome-file>
+  </welcome-file-list>
+
+  <context-param>
+    <param-name>Ownername</param-name>
+    <param-value>vipul</param-value>
+  </context-param>
+</web-app>

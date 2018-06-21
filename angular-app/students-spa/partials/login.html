@@ -1,0 +1,31 @@
+<section>
+    <div class="container">
+        <div class="form-horizontal" ng-form="loginForm">
+            <div class="form-group" ng-form="nameForm">
+                <label class="control-label col-sm-2" for="username">Username:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="username" placeholder="enter username" name="username" ng-model="user.name" required>
+                </div>
+            </div>
+            <div class="form-group" ng-form="pwdForm">
+                <label class="control-label col-sm-2" for="pwd">Password:</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" ng-model="user.pwd" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember" ng-model="remember"> Remember me</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-info" ng-click="login(user,remember)">login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

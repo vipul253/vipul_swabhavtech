@@ -1,8 +1,9 @@
 <section>
     <div class="page-header text-center">
-        <h3>Add Student</h3>
+        <h3>Student-SPA</h3>
     </div>
-    <div class="form-group col-sm-4" ng-form="mainForm">
+    <div id="loader" class="text-center" ng-hide="isLoading"></div>
+    <div class="form-group col-sm-4" ng-form="mainForm" ng-hide="!isLoading">
         <div class="form-group" ng-form="rollForm">
             <label for="roll" class="control-label">Student RollNo</label>
             <input type="number" class="form-control" id="roll" placeholder="roll number" name="roll" ng-model="student.rollNo" required/>
@@ -22,7 +23,7 @@
         <div class="form-group" ng-form="genderForm">
             <label for="gender" class="radio">Gender:
                 <label for="male">
-                    <input type="radio" id="male" name="gender" ng-model="student.isMale" ng-value="true" ng-checked="true"> male
+                    <input type="radio" id="male" name="gender" ng-model="student.isMale" ng-value="true"> male
                 </label>
                 <label for="female">
                     <input type="radio" id="female" name="gender" ng-model="student.isMale" ng-value="false"> female
@@ -35,8 +36,8 @@
             </label>
         </div>
         <div class="form-inline">
-            <button id="addStudentButton" class="btn btn-primary" ng-click="addStudent(student)" ng-value="btnSwitch" 
-                ng-disabled="mainForm.$pristine || mainForm.$invalid">Add student</button>
+            <button id="addStudentButton" class="btn btn-primary" ng-click="editStudent()" ng-value="btnSwitch" 
+                ng-disabled="mainForm.$pristine || mainForm.$invalid || mainForm.$error.required">Edit student</button>
         </div>
     </div>
 </section>
