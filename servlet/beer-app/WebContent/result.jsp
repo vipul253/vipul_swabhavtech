@@ -13,7 +13,7 @@
 	List<String> styles = (List)request.getAttribute("styles");
 	Iterator<String> it = styles.iterator();
 	while(it.hasNext()) {
-		out.println("<br>try:"+it.next());
+		out.println("<br>try: "+it.next());
 	}
 %>
 	
