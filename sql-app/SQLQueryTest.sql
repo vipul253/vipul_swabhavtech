@@ -1,0 +1,10 @@
+select * from EMP
+
+INSERT INTO MANAGERS VALUES (7933,'NEWGUY','CLARK',7782,'23-JAN-82',1300,NULL,10);
+
+DELETE from MANAGERS
+where EMPNO = 7566
+
+REPLACE view Managers
+AS select * from EMP
+where JOB = 'CLERK'

@@ -1,0 +1,13 @@
+SELECT * FROM BANK_MASTER WHERE NAME='vipul' AND PASS='1233';
+
+INSERT INTO bank_master VALUES('abc','123',3000);
+INSERT INTO bank_transaction VALUES('abc',3000,'D',NOW());
+
+SELECT *
+INTO OUTFILE 'txn.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\n'
+FROM bank_transaction
+WHERE name="vipul"

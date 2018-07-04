@@ -25,23 +25,23 @@
 						Contact</a></li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href=""><i
-						class="fa fa-user" aria-hidden="true"></i> <%=username%> </a></li>
-				<li class="nav-item">
-					<%
-						if (loggedIn) {
-					%> 
-					<a class="nav-link" href="logout"><i class="fa fa-sign-out"
-						aria-hidden="true"></i> Logout </a> 
-					<%
- 						} else {
- 					%> 
- 					<a class="nav-link" href="login"><i class="fa fa-sign-in"
-						aria-hidden="true"></i> Login</a> 
-					<%
- 						}
- 					%>
-				</li>
+				<li><input class="form-control mr-sm-2" type="search"
+					placeholder="Search" aria-label="Search" id="search"></li>
+				<li class="nav-item"><a class="nav-link" href="">
+					<i class="fa fa-user" aria-hidden="true"></i> <%=username%> </a></li>
+				<%
+					if (loggedIn) {
+				%>
+				<li class="nav-item"><a class="nav-link" href="logout"><i
+						class="fa fa-sign-out" aria-hidden="true"></i> Logout </a></li>
+				<%
+					} else {
+				%>
+				<li class="nav-item"><a class="nav-link" href="login"><i
+						class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+				<%
+					}
+				%>
 			</ul>
 		</div>
 	</nav>

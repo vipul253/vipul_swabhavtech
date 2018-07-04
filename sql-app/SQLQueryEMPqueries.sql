@@ -24,7 +24,9 @@ from EMP
 where JOB = 'MANAGER'
 
 --display top 2 salaried employees
-
+select top 2 ENAME, SAL
+from EMP
+order by SAL desc
 
 --display employee name in small letters
 SELECT *, LOWER(ENAME) AS LowercaseENAME

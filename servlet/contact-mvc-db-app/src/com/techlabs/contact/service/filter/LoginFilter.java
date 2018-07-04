@@ -1,4 +1,4 @@
-package com.techlabs.contactService.filter;
+package com.techlabs.contact.service.filter;
 
 import java.io.IOException;
 

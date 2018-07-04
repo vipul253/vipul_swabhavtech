@@ -1,0 +1,2 @@
+CREATE CLUSTERED INDEX ID_index
+ON Persons (ID)

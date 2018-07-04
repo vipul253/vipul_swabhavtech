@@ -1,0 +1,4 @@
+--display emp with their deptname
+SELECT EMP.ENAME,DEPT.DNAME
+FROM DEPT
+JOIN EMP ON EMP.DEPTNO=DEPT.DEPTNO

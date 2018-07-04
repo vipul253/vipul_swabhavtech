@@ -1,4 +1,4 @@
-package com.techlabs.contactService.filter;
+package com.techlabs.sample.bank.filter;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter({ "/addContact", "/editContact" })
+@WebFilter({ "/displayTransactions", "/makeTransaction" })
 public class LoginFilter implements Filter {
 
 	/**
@@ -53,5 +53,4 @@ public class LoginFilter implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 	}
-
 }
