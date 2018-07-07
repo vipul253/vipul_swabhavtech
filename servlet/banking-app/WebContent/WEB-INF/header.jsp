@@ -1,4 +1,3 @@
-
 <%
 	String username = "Guest";
 	boolean loggedIn = false;

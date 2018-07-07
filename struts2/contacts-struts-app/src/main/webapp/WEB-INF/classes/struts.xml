@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="main" extends="struts-default">
+		<action name=""
+			class="com.techlabs.contacts.actions.DisplayContactsAction">
+			<result name="success">
+				/views/contacts.jsp
+			</result>
+		</action>
+		<action name="contacts"
+			class="com.techlabs.contacts.actions.DisplayContactsAction">
+			<result name="success">
+				/views/contacts.jsp
+			</result>
+		</action>
+		<action name="add"
+			class="com.techlabs.contacts.actions.AddContactAction">
+			<result name="success">
+				/views/addContact.jsp
+			</result>
+			<result name="login">
+				/views/login.jsp
+			</result>
+		</action>
+		<action name="addContact" class="com.techlabs.contacts.actions.AddContactAction" method="add">
+			<result name="success" type="redirectAction">
+				<param name="actionName">contacts</param>
+			</result>
+		</action>
+		<action name="edit" class="com.techlabs.contacts.actions.EditContactAction">
+			<result name="success">
+				/views/editContact.jsp
+			</result>
+			<result name="login">
+				/views/login.jsp
+			</result>
+		</action>
+		<action name="editContact" class="com.techlabs.contacts.actions.EditContactAction"
+			method="edit">
+			<result name="success" type="redirectAction">
+				<param name="actionName">contacts</param>
+			</result>
+		</action>
+		<action name="gotologin" class="com.techlabs.contacts.actions.LoginAction">
+			<result name="success">
+				/views/login.jsp
+			</result>
+		</action>
+		<action name="login" class="com.techlabs.contacts.actions.LoginAction"
+			method="checkUser">
+			<result name="success" type="redirectAction">
+				<param name="actionName">contacts</param>
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">gotologin</param>
+				<param name="disp">${disp}</param>
+				<param name="error">${error}</param>
+			</result>
+		</action>
+		<action name="logout" class="com.techlabs.contacts.actions.LoginAction" method="doLogout">
+			<result name="success" type="redirectAction">
+				<param name="actionName">contacts</param>
+			</result>
+		</action>
+	</package>
+</struts>

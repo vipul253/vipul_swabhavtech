@@ -86,21 +86,15 @@ color:green;
 		$(document).ready(function() {
 			$('#pwd2').on('keyup', function() {
 				if ($('#pwd1').val() == $('#pwd2').val()) {
-					$('#matching').html("matching").css('color', 'green');
+					$('#matching').html("matching").css('color', '#0df00d');
 					$('#submitbtn').prop("disabled", false);
 				} else {
-					$('#matching').html("not matching").css('color', 'red');
+					$('#matching').html("not matching").css('color', '#ff3a00');
 					$('#submitbtn').prop("disabled", true);
 				}
 			});
 
-			$('#amount').on('keyup', function() {
-				if ($('#amount').val() < 1000) {
-					$('#submitbtn').prop("disabled", true);
-				} else {
-					$('#submitbtn').prop("disabled", false);
-				}
-			});
+	
 		});
 	</script>
 </body>

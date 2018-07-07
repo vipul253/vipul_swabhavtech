@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="main" extends="struts-default">
+		<action name="" class="com.shopping.cart.actions.DisplayAction">
+			<result name="success">
+				/views/cart.jsp
+			</result>
+		</action>
+		<action name="cart" class="com.shopping.cart.actions.DisplayAction">
+			<result name="success">
+				/views/cart.jsp
+			</result>
+		</action>
+		<action name="*add" class="com.shopping.cart.actions.DisplayAction"
+			method="addLineItem">
+			<result name="success" type="redirectAction">
+				<param name="actionName">cart</param>
+				<param name="selected">${selected}</param>
+			</result>
+		</action>
+	</package>
+</struts>

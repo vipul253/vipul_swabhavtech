@@ -62,8 +62,7 @@ public class RegistrationController extends HttpServlet {
 
 			response.sendRedirect("login");
 		} else {
-			request.setAttribute("error",
-					"invalid captcha!");
+			request.setAttribute("error", "invalid captcha!");
 			RequestDispatcher view = request
 					.getRequestDispatcher("/WEB-INF/register.jsp");
 			view.forward(request, response);

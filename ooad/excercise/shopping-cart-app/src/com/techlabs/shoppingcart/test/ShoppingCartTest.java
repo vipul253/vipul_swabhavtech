@@ -1,6 +1,7 @@
 package com.techlabs.shoppingcart.test;
 
 import com.techlabs.shoppingcart.*;
+
 import java.util.*;
 
 public class ShoppingCartTest {
@@ -18,14 +19,10 @@ public class ShoppingCartTest {
 		order2.addToCart(new LineItem(new Product(21, "Galax note 8",623390, 25),3));
 		order2.addToCart(new LineItem(new Product(21, "Galax note 8",623390, 25),4));
 		
-		
 		CustomerHistory(customer1);
-		
-
 	}
 	
 	public static void CustomerHistory(Customer customer){
 		System.out.println(customer);
 	}
-
 }
