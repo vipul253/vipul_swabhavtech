@@ -1,43 +1,24 @@
 package com.shopping.cart.actions;
 
-import java.util.List;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+import com.shopping.cart.view.model.ShoppingCartView;
 
-import com.shopping.cart.model.Product;
-import com.shopping.cart.service.ProductService;
+public class DisplayAction extends ActionSupport implements ModelDriven<ShoppingCartView> {
 
-public class DisplayAction {
-
-	private ProductService productTool = ProductService.getInstance();
-	private List<Product> products = productTool.getProducts();
-	private double selected;
-	private int quantity;
+	private static final long serialVersionUID = 1L;
+	ShoppingCartView display = new ShoppingCartView(); 
+	
+	@Override
+	public ShoppingCartView getModel() {
+		return display;
+	}
 
 	public String execute() {
-		return "success";
+		return ActionSupport.SUCCESS;
 	}
-
-	public String addLineItem() {
-		System.out.println(selected * quantity);
-		return "success";
-	}
-
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public double getSelected() {
-		return selected;
-	}
-
-	public void setSelected(double selected) {
-		this.selected = selected;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	
+	public String getTotalCost(){
+		return ActionSupport.SUCCESS;
 	}
 }

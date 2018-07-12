@@ -4,11 +4,11 @@ import java.util.*;
 
 public class Order {
 	private Date date;
-	private List<LineItem> orders;
+	private List<LineItem> order;
 
 	public Order(Date date) {
 		this.date = date;
-		orders = new ArrayList<LineItem>();
+		order = new ArrayList<LineItem>();
 	}
 
 	@Override
@@ -18,18 +18,18 @@ public class Order {
 	}
 
 	public void addToCart(LineItem li) {
-		for(LineItem l: orders){
+		for(LineItem l: order){
 			if(li.getProduct().getID()==l.getProduct().getID()){
 				l.setQuantity(li.getQuantity()+l.getQuantity());
 				return;
 			}
 		}
-		orders.add(li);
+		order.add(li);
 	}
 
 	public double checkoutCost() {
 		double finalCost = 0;
-		for (LineItem li : orders) {
+		for (LineItem li : order) {
 			finalCost += li.CalculateTotalCost();
 		}
 		return finalCost;
@@ -41,7 +41,7 @@ public class Order {
 	
 	public String getLineItem(){
 		String str="";
-		for(LineItem li : orders){
+		for(LineItem li : order){
 			str+=li.toString();
 		}
 		return str;

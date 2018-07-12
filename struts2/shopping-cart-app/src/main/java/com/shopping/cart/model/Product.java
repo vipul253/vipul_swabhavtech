@@ -8,12 +8,6 @@ public class Product {
 	private double cost;
 	private double discount;
 
-	@Override
-	public String toString() {
-		return " Product ID:" + this.ID + " Product name:" + this.name
-				+ " Cost:" + this.CalculateProductCost();
-	}
-
 	public double CalculateProductCost() {
 		return this.cost - (this.discount / 100) * cost;
 	}

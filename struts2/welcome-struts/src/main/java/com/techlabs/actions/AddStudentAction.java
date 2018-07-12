@@ -28,7 +28,6 @@ public class AddStudentAction extends ActionSupport {
 		this.student = student;
 	}
 	
-	@Override
 	public void validate(){
 	    if (student.getRollNo()>9999) {
 	        addFieldError("student.rollNo", "roll no. should be within 9999");

@@ -17,7 +17,7 @@ public class ShoppingCartTest {
 		customer1.addOrder(order2);
 		order2.addToCart(new LineItem(new Product(23, "MI MAX 4",679230, 25),2));
 		order2.addToCart(new LineItem(new Product(21, "Galax note 8",623390, 25),3));
-		order2.addToCart(new LineItem(new Product(21, "Galax note 8",623390, 25),4));
+		order2.addToCart(new LineItem(new Product(21, "Galax note 8",623390, 25),9));
 		
 		CustomerHistory(customer1);
 	}

@@ -5,20 +5,16 @@ import java.util.*;
 public class Customer {
 	
 	private String name;
-	private List<Order> order;
+	private String password;
+	private List<Order> orders;
 
 	public Customer(String name) {
-		this.order = new ArrayList<Order>();
+		this.orders = new ArrayList<Order>();
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "Customer name:" + this.name + this.getOrder();
-	}
-
 	public void addOrder(Order order) {
-		this.order.add(order);
+		this.orders.add(order);
 	}
 
 	public String getName() {
@@ -27,7 +23,7 @@ public class Customer {
 
 	public String getOrder() {
 		String str = "";
-		for (Order o : order) {
+		for (Order o : orders) {
 			str += o.toString();
 		}
 		return str;

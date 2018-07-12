@@ -43,4 +43,13 @@ public class ProductService {
 	public List<Product> getProducts() {
 		return products;
 	}
+	
+	public Product getById(String id){
+		for(Product product : products){
+			if(id.equals(product.getID())){
+				return product;
+			}
+		}
+		return null;
+	}
 }
