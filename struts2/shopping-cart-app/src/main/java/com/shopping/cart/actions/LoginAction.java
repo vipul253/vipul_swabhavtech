@@ -1,9 +1,7 @@
 package com.shopping.cart.actions;
 
 import java.util.Map;
-
 import org.apache.struts2.interceptor.SessionAware;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.shopping.cart.service.CustomerService;
 
