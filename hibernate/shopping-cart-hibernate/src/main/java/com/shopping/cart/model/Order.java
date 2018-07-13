@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -32,12 +33,34 @@ public class Order {
 		this.date = Calendar.getInstance().getTime();
 	}
 	
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	private Set<LineItem> order;
 	
 	@ManyToOne
 	@JoinColumn
 	private Customer cust;
+	
+	@Override
+	public String toString(){
+		return "order date:"+this.date.toString()+this.getLineItem()+" Final Cost:"+this.checkoutCost()+"\n";
+
+	}
+	
+	public String getLineItem(){
+		String str="";
+		for(LineItem li : order){
+			str+=li.toString();
+		}
+		return str;
+	}
+	
+	public double checkoutCost() {
+		double finalCost = 0;
+		for (LineItem li : order) {
+			finalCost += li.CalculateTotalCost();
+		}
+		return finalCost;
+	}
 
 	public Set<LineItem> getOrder() {
 		return order;

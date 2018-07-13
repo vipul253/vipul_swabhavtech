@@ -15,5 +15,8 @@
 		<property name="format_sql">true</property>
 		<mapping class="com.shopping.cart.model.Customer" />
 		<mapping class="com.shopping.cart.model.Order" />
+		<mapping class="com.shopping.cart.model.LineItem" />
+		<mapping class="com.shopping.cart.model.Product" />
+		
 	</session-factory>
 </hibernate-configuration>

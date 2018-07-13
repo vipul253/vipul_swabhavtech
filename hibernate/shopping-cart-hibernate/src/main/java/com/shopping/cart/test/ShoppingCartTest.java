@@ -63,10 +63,10 @@ public class ShoppingCartTest {
 			factory.close();
 		}*/
 
-		getCustomer("vipul");
+		printCustomer("vipul");
 	}
 
-	public static void getCustomer(String name) {
+	public static void printCustomer(String name) {
 		Customer cust = null;
 		Session session = factory.openSession();
 		Transaction txn = null;
@@ -78,8 +78,7 @@ public class ShoppingCartTest {
 			query.setParameter("name", name);
 			cust = (Customer)query.uniqueResult();
 			System.out.println("Name:"+cust.getName());
-			System.out.println("Order Count:"+cust.getOrders().size());
-			System.out.println("Order:"+cust.getOrders());
+			System.out.print(cust.getDetails());
 			txn.commit();
 
 		} catch (HibernateException ex) {

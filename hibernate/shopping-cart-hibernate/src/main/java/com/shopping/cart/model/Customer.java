@@ -30,6 +30,14 @@ public class Customer {
 	@OneToMany(mappedBy = "cust", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Set<Order> orders;
 	
+	public String getDetails() {
+		String str = "";
+		for (Order o : orders) {
+			str += o.toString();
+		}
+		return str;
+	}
+	
 	public Customer(){
 		orders = new HashSet<Order>();
 	}

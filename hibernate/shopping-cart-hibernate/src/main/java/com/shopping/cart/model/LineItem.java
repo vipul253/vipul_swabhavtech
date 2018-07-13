@@ -32,6 +32,16 @@ public class LineItem {
 	@ManyToOne
 	@JoinColumn
 	private Order order;
+	
+	@Override
+	public String toString() {
+		return "\n" + this.product.toString() + " Quantity:" + this.quantity
+				+ " Total Cost:" + this.CalculateTotalCost();
+	}
+
+	public double CalculateTotalCost() {
+		return this.quantity * this.product.CalculateProductCost();
+	}
 
 	public Order getOrder() {
 		return order;
@@ -60,5 +70,4 @@ public class LineItem {
 	public UUID getId() {
 		return id;
 	}
-
 }
