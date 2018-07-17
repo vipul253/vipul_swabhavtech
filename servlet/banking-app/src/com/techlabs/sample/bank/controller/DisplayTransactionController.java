@@ -36,21 +36,12 @@ public class DisplayTransactionController extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String name = (String) request.getSession().getAttribute("name");
+		
 		List<Transaction> transactions = transactionTool.getTransactions(name);
 
 		request.setAttribute("transactionList", transactions);
 		RequestDispatcher view = request
-				.getRequestDispatcher("/WEB-INF/transactions.jsp");
+				.getRequestDispatcher("transactions.jsp");
 		view.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
 }

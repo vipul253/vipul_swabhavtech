@@ -10,15 +10,19 @@ public class Transaction {
 	private String type;
 	private Date date;
 
+	public Transaction() {
+
+	}
+
 	public Transaction(String name, double amount, String type) {
 		this.Id = UUID.randomUUID().toString();
 		this.name = name;
 		this.amount = amount;
 		this.type = type;
 	}
-	
+
 	public Transaction(String name, double amount, String type, Date date) {
-		this(name,amount,type);
+		this(name, amount, type);
 		this.date = date;
 	}
 

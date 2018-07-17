@@ -27,6 +27,7 @@ public class Order {
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
 	@Column(columnDefinition = "BINARY(16)", name = "id", unique = true)
 	private UUID id;
+	private double cost;
 	private Date date;
 	
 	public Order(){
@@ -42,10 +43,18 @@ public class Order {
 	
 	@Override
 	public String toString(){
-		return "order date:"+this.date.toString()+this.getLineItem()+" Final Cost:"+this.checkoutCost()+"\n";
+		return "order date: "+this.date.toString()+this.getLineItem()+" Final Cost:"+this.checkoutCost()+"\n";
 
 	}
 	
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+
 	public String getLineItem(){
 		String str="";
 		for(LineItem li : order){

@@ -28,7 +28,6 @@ public class AddContactAction implements ModelDriven<Contact>, SessionAware {
 
 	@Override
 	public Contact getModel() {
-		// TODO Auto-generated method stub
 		return contact;
 	}
 

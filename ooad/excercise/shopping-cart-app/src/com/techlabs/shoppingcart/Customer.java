@@ -13,6 +13,11 @@ public class Customer {
 		this.name = name;
 	}
 
+	@Override
+	public String toString(){
+		return "Name: "+this.getName()+getOrder();
+	}
+	
 	public void addOrder(Order order) {
 		this.orders.add(order);
 	}

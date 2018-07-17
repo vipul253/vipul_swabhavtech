@@ -20,6 +20,7 @@ public class BankDB {
 	public List<Transaction> getTransactions(String name) {
 		Connection conn = makeConn.connect();
 		String txnQuery = "SELECT * FROM BANK_TRANSACTION WHERE NAME=?";
+		transactions = new ArrayList<Transaction>();
 		try {
 			stmt = conn.prepareStatement(txnQuery);
 			stmt.setString(1, name);

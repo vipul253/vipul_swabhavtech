@@ -20,33 +20,15 @@ public class ShoppingCartTest {
 			.buildSessionFactory();
 
 	public static void main(String[] args) {
-		Session session = factory.openSession();
-		Transaction txn = null;
-
+		
 		Customer c1 = createCustomer("vipul", "123");
-		Order ord1 = new Order();
-		Set<Order> orders = new HashSet<Order>();
-		Set<LineItem> order = new HashSet<LineItem>();
-
+		
 		Product p1 = createProduct("iPhone", 66000.0, 10.0);
 		Product p2 = createProduct("Galaxy S9", 60000.0, 10.0);
 		Product p3 = createProduct("Google Pixel", 55000.0, 10.0);
-
-		LineItem l1 = createLineItem(p1, 3, ord1);
-		LineItem l2 = createLineItem(p2, 4, ord1);
-		LineItem l3 = createLineItem(p3, 1, ord1);
-
-		order.add(l1);
-		order.add(l2);
-		order.add(l3);
-
-		ord1.setOrder(order);
-		ord1.setCust(c1);
-		orders.add(ord1);
-
-		c1.setOrders(orders);
-/*		try {
-
+		Session session = factory.openSession();
+		Transaction txn = null;
+		try {
 			txn = session.beginTransaction();
 			session.save(p1);
 			session.save(p2);
@@ -61,24 +43,24 @@ public class ShoppingCartTest {
 		} finally {
 			session.close();
 			factory.close();
-		}*/
-
-		printCustomer("vipul");
+		}
 	}
 
-	public static void printCustomer(String name) {
+	public static Customer getCustomer(String name) {
 		Customer cust = null;
 		Session session = factory.openSession();
 		Transaction txn = null;
 		try {
 
 			txn = session.beginTransaction();
+
 			String hql = "from Customer c where c.name =:name";
 			Query query = session.createQuery(hql);
 			query.setParameter("name", name);
-			cust = (Customer)query.uniqueResult();
-			System.out.println("Name:"+cust.getName());
+			cust = (Customer) query.uniqueResult();
+			System.out.println("Name:" + cust.getName());
 			System.out.print(cust.getDetails());
+
 			txn.commit();
 
 		} catch (HibernateException ex) {
@@ -87,8 +69,33 @@ public class ShoppingCartTest {
 			ex.printStackTrace();
 		} finally {
 			session.close();
-			factory.close();
 		}
+		return cust;
+	}
+	
+	public static Product getProduct(String name) {
+		Product p = null;
+		Session session = factory.openSession();
+		Transaction txn = null;
+		try {
+
+			txn = session.beginTransaction();
+
+			String hql = "from Product p where p.name =:name";
+			Query query = session.createQuery(hql);
+			query.setParameter("name", name);
+			p = (Product) query.uniqueResult();
+
+			txn.commit();
+
+		} catch (HibernateException ex) {
+			if (txn != null)
+				txn.rollback();
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return p;
 	}
 
 	public static Product createProduct(String name, double cost,

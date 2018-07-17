@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="main" extends="struts-default">
+
+		<interceptors>
+			<interceptor name="checkLogin"
+				class="com.shopping.cart.interceptors.LoginInterceptor"></interceptor>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="checkLogin" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+			<result name="login" type="redirect">/views/login.jsp</result>
+		</global-results>
+
+		<action name="" class="com.shopping.cart.actions.DisplayAction">
+			<result name="success">
+				/views/cart.jsp
+			</result>
+		</action>
+
+		<action name="cart" class="com.shopping.cart.actions.DisplayAction">
+			<result name="success">
+				/views/cart.jsp
+			</result>
+		</action>
+
+		<action name="addToCart" class="com.shopping.cart.actions.AddAction">
+			<interceptor-ref name="loginStack" />
+			<result name="success" type="redirectAction">
+				<param name="actionName">cart</param>
+				<param name="selected">${selected}</param>
+				<param name="quantity">${quantity}</param>
+			</result>
+			<result name="input">
+				/views/cart.jsp
+			</result>
+		</action>
+
+		<action name="remove" class="com.shopping.cart.actions.RemoveAction">
+			<interceptor-ref name="loginStack" />
+			<result name="success" type="redirectAction">
+				<param name="actionName">cart</param>
+			</result>
+		</action>
+		
+		<action name="checkout" class="com.shopping.cart.actions.CheckoutAction">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/checkout.jsp
+			</result>
+		</action>
+		
+		<action name="doCheckout" class="com.shopping.cart.actions.CheckoutAction" method="checkout">
+			<interceptor-ref name="loginStack" />
+			<result name="success" type="redirectAction">
+				<param name="actionName">cart</param>
+			</result>
+		</action>
+
+		<action name="login" class="com.shopping.cart.actions.LoginAction">
+			<result name="login">
+				/views/login.jsp
+			</result>
+		</action>
+
+		<action name="doLogin" class="com.shopping.cart.actions.LoginAction"
+			method="checkUser">
+			<result name="success" type="redirectAction">
+				<param name="actionName">cart</param>
+			</result>
+			<result name="input">
+				/views/login.jsp
+			</result>
+		</action>
+
+		<action name="logout" class="com.shopping.cart.actions.LoginAction"
+			method="doLogout">
+			<result name="success" type="redirectAction">
+				<param name="actionName">cart</param>
+			</result>
+		</action>
+	</package>
+
+	<package extends="struts-default,json-default" name="ajax-package">
+		<action class="com.shopping.cart.actions.DisplayAction" method="getTotalCost"
+			name="getTotalCost">
+			<result type="json">
+				<param name="noCache">true</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="root">totalCost</param>
+			</result>
+		</action>
+	</package>
+</struts>
