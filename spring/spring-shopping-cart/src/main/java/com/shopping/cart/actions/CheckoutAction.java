@@ -32,17 +32,11 @@ public class CheckoutAction implements ModelDriven<CheckoutView>, SessionAware {
 	}
 
 	public String execute() {
-		double finalCost = 0;
-		Set<LineItem> items = (HashSet<LineItem>) userSession.get("lineItems");
-		for(LineItem li : items){
-			finalCost += li.CalculateTotalCost();
-		}
-		checkout.setCheckoutCost(finalCost);
+		checkout.setCheckoutCost(getCheckoutCost());
 		return "success";
 	}
 
 	public String checkout() {
-		System.out.println(checkout.getCheckoutCost());
 		String name = userSession.get("name").toString();
 		Set<LineItem> items = (HashSet<LineItem>) userSession.get("lineItems");
 		Order order = new Order();
@@ -50,11 +44,20 @@ public class CheckoutAction implements ModelDriven<CheckoutView>, SessionAware {
 			li.setOrder(order);
 		}
 		order.setOrder(items);
-		order.setCost(checkout.getCheckoutCost());
+		order.setCost(getCheckoutCost());
 		svc.checkout(name, order);
 		items.clear();
 		userSession.put("lineitems", items);
 		return "success";
+	}
+	
+	private double getCheckoutCost(){
+		double finalCost = 0;
+		Set<LineItem> items = (HashSet<LineItem>) userSession.get("lineItems");
+		for(LineItem li : items){
+			finalCost += li.CalculateTotalCost();
+		}
+		return finalCost;
 	}
 
 }

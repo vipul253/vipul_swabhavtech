@@ -26,7 +26,8 @@ public class LineItem {
 	private UUID id;
 	private int quantity;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne
+	@JoinColumn
 	private Product product;
 
 	@ManyToOne

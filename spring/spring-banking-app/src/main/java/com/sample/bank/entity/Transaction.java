@@ -1,9 +1,7 @@
-package com.shopping.cart.entity;
+package com.sample.bank.entity;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -14,56 +12,53 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "ORDERS")
-public class Order {
-	
+@Table(name = "TRANSACTIONS")
+public class Transaction {
+
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
 	@Column(columnDefinition = "BINARY(16)", name = "id", unique = true)
 	private UUID id;
+	private double amount;
+	private String type;
 	private Date date;
-	private double cost;
-	
-	public Order(){
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn
+	private Account acc;
+
+	public Transaction() {
 		this.date = Calendar.getInstance().getTime();
 	}
-	
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	private Set<LineItem> order = new HashSet<>();
-	
-	@ManyToOne
-	@JoinColumn
-	private Customer cust;
-	
-	public double getCost() {
-		return cost;
+
+	public double getAmount() {
+		return amount;
 	}
 
-	public void setCost(double cost) {
-		this.cost = cost;
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
 
-	public Set<LineItem> getOrder() {
-		return order;
+	public String getType() {
+		return type;
 	}
 
-	public void setOrder(Set<LineItem> order) {
-		this.order = order;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public Customer getCust() {
-		return cust;
+	public Account getAcc() {
+		return acc;
 	}
 
-	public void setCust(Customer cust) {
-		this.cust = cust;
+	public void setAcc(Account acc) {
+		this.acc = acc;
 	}
 
 	public UUID getId() {

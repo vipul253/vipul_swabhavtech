@@ -31,9 +31,13 @@
 				</s:iterator>
 			</tbody>
 		</table>
-		<div class="col-sm-2">
-			<input type="text" id="checkoutCost" name="checkoutCost" readonly
-				class="mb-3 form-control" value="<s:property value="checkoutCost"/>" />
+		<div class="">
+			<div>
+				<p id="checkoutCost" name="checkoutCost" class="mb-3 form-control">
+					Final Cost:
+					<s:property value="checkoutCost" />
+				</p>
+			</div>
 			<a href="doCheckout" class="btn btn-primary"> <i
 				class="fa fa-shopping-cart"> confirm order</i>
 			</a>

@@ -22,10 +22,25 @@ public class ShoppingCartTest {
 	public static void main(String[] args) {
 		
 		Customer c1 = createCustomer("vipul", "123");
+		Order ord1 = new Order();
 		
 		Product p1 = createProduct("iPhone", 66000.0, 10.0);
 		Product p2 = createProduct("Galaxy S9", 60000.0, 10.0);
 		Product p3 = createProduct("Google Pixel", 55000.0, 10.0);
+		
+		LineItem l1 = createLineItem(p1,2,ord1);
+		LineItem l2 = createLineItem(p2,3,ord1);
+		
+		Set<LineItem> order = new HashSet<LineItem>();
+		order.add(l1);
+		order.add(l2);
+		Set<Order> orders = new HashSet<Order>();
+		ord1.setOrder(order);
+		ord1.setCust(c1);
+		orders.add(ord1);
+		c1.setOrders(orders);
+		
+		
 		Session session = factory.openSession();
 		Transaction txn = null;
 		try {
