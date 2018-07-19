@@ -1,9 +1,14 @@
 package com.sample.bank.repository;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -178,10 +183,6 @@ public class BankRepository {
 		} finally {
 			session.close();
 		}
-	}
-
-	public void makeCSV(String name) {
-
 	}
 
 	public void setLastLoggedIn(String name) {
