@@ -16,7 +16,7 @@ import com.sample.bank.entity.Transaction;
 import com.sample.bank.service.UserAccountService;
 import com.sample.bank.view.model.UserView;
 
-public class DownloadPassbookAction extends Action implements ModelDriven<UserView>, SessionAware {
+public class DownloadPassbookAction implements ModelDriven<UserView>, SessionAware {
 
 	@Autowired
 	private UserAccountService svc;
@@ -38,23 +38,20 @@ public class DownloadPassbookAction extends Action implements ModelDriven<UserVi
 
 		HttpServletResponse response = ServletActionContext.getResponse();
 		List<Transaction> transactions = svc.getTransactions(userSession.get("name").toString());
-		System.out.println(transactions.size());
 		try {
 			response.setContentType("text/csv");
-			String reportName = "transactions.csv";
+			String reportName = userSession.get("name").toString()+"-transactions.csv";
 			response.setHeader("Content-disposition", "attachment;filename=" + reportName);
 
 			
 			String CSV = "ID, Amount, Type, Date\n";
-			Iterator<Transaction> iter = transactions.iterator();
 			
-			while(iter.hasNext()) {
-				CSV += iter.next().getId() + ", " + iter.next().getAmount() + ", " 
-						+ iter.next().getType() + ", " + iter.next().getDate() + "\n";
+			for(Transaction t : transactions) {
+				CSV += t.getId() + ", " + t.getAmount() + ", " 
+						+ t.getType() + ", " + t.getDate() + "\n";
 			}
 
 			response.getOutputStream().print(CSV);
-
 			response.getOutputStream().flush();
 
 		} catch (Exception e) {
