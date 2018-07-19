@@ -25,7 +25,7 @@ public class Account {
 	@Column(columnDefinition = "BINARY(16)", name = "id", unique = true)
 	private UUID id;
 	private double balance;
-	private String status;
+	
 	
 	@OneToMany(mappedBy = "acc", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private Set<Transaction> txn = new HashSet<>();
@@ -40,14 +40,6 @@ public class Account {
 
 	public void setTxn(Set<Transaction> txn) {
 		this.txn = txn;
-	}
-	
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public double getBalance() {

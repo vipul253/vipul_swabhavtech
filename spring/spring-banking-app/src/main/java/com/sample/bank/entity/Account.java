@@ -25,29 +25,33 @@ public class Account {
 	@Column(columnDefinition = "BINARY(16)", name = "id", unique = true)
 	private UUID id;
 	private double balance;
-	private String status;
 	
-	@OneToMany(mappedBy = "acc", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-	private Set<Transaction> txn = new HashSet<>();
-
+	@OneToMany(mappedBy = "acc", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private Set<Transaction> transactions = new HashSet<>();
+	
+	public void addTransaction(Transaction txn){
+		transactions.add(txn);
+	}
+	
+	public void deposit(double amount){
+		this.balance += amount;
+	}
+	
+	public void withdraw(double amount) {
+		this.balance -= amount;
+	}
+	
 	public UUID getId() {
 		return id;
 	}
-
-	public Set<Transaction> getTxn() {
-		return txn;
-	}
-
-	public void setTxn(Set<Transaction> txn) {
-		this.txn = txn;
-	}
 	
-	public String getStatus() {
-		return status;
+	public Set<Transaction> getTransactions() {
+		return transactions;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+
+	public void setTransactions(Set<Transaction> transactions) {
+		this.transactions = transactions;
 	}
 
 	public double getBalance() {

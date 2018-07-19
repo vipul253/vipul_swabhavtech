@@ -27,8 +27,9 @@ public class User {
 	private String name;
 	private String password;
 	private String role;
+	private String status;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn
 	private Account acc;
 
@@ -42,6 +43,14 @@ public class User {
 		this.password = password;
 	}
 	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public String getRole() {
 		return role;
 	}

@@ -1,6 +1,5 @@
 package com.sample.bank.entity;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -34,7 +33,13 @@ public class Transaction {
 	private Account acc;
 
 	public Transaction() {
-		this.date = Calendar.getInstance().getTime();
+		this.date = new Date();
+	}
+	
+	public Transaction(double amount,String type) {
+		this();
+		this.amount = amount;
+		this.type = type;
 	}
 
 	public double getAmount() {

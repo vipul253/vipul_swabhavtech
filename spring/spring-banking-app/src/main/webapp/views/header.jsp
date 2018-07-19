@@ -1,10 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String username = "Guest";
+	String role = "";
 	boolean loggedIn = false;
 
 	if (request.getSession().getAttribute("name") != null) {
 		username = (String) session.getAttribute("name");
+		role = (String) session.getAttribute("role");
 		loggedIn = true;
 	}
 %>
@@ -21,6 +23,17 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link" href="">Home
 				</a></li>
+				<%
+					if (role=="user") {
+				%>
+				<li class="nav-item"><a class="nav-link" href="makeCSV">Get
+						CSV</a></li>
+				<li class="nav-item"><a class="nav-link" href="makeTransaction">Make
+						Transaction</a></li>
+
+				<%
+					}
+				%>
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="nav-link" href=""> <i

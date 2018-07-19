@@ -4,15 +4,108 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<package name="main" extends="struts-default">
+
+		<interceptors>
+			<interceptor name="checkLogin"
+				class="com.shopping.cart.interceptors.LoginInterceptor"></interceptor>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="checkLogin" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+			<result name="login" type="redirect">/views/login.jsp</result>
+		</global-results>
+
 		<action name="" class="com.sample.bank.actions.DisplayAction">
 			<result name="success">
 				/views/home.jsp
 			</result>
 		</action>
-		
+
 		<action name="home" class="com.sample.bank.actions.DisplayAction">
 			<result name="success">
 				/views/home.jsp
+			</result>
+		</action>
+
+		<action name="register" class="com.sample.bank.actions.RegisterAction">
+			<result name="success">
+				/views/register.jsp
+			</result>
+		</action>
+
+		<action name="makeAccount" class="com.sample.bank.actions.RegisterAction"
+			method="register">
+			<result name="success">
+				/views/login.jsp
+			</result>
+		</action>
+
+		<action name="login" class="com.sample.bank.actions.LoginAction">
+			<result name="success">
+				/views/login.jsp
+			</result>
+		</action>
+
+		<action name="doLogin" class="com.sample.bank.actions.LoginAction"
+			method="checkUser">
+			<result name="admin" type="redirect">
+				adminHome
+			</result>
+			<result name="user" type="redirect">
+				userHome
+			</result>
+			<result name="input">
+				/views/login.jsp
+			</result>
+		</action>
+
+		<action name="userHome" class="com.sample.bank.actions.UserDisplayAction">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/userHome.jsp
+			</result>
+		</action>
+
+		<action name="adminHome" class="com.sample.bank.actions.AdminDisplayAction">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/adminHome.jsp
+			</result>
+		</action>
+
+		<action name="makeTransaction" class="com.sample.bank.actions.TransactionAction">
+			<result name="success">
+				/views/doTransaction.jsp
+			</result>
+		</action>
+
+		<action name="transact" class="com.sample.bank.actions.TransactionAction"
+			method="transact">
+			<result name="success" type="redirect">
+				userHome
+			</result>
+		</action>
+
+		<action name="changeAccountState" class="com.sample.bank.actions.AdminAction"
+			method="changeAccountState">
+			<result name="success" type="redirect">
+				adminHome
+			</result>
+		</action>
+
+		<action name="makeCSV" class="com.sample.bank.actions.DisplayAction">
+			<result name="success" type="redirect">
+				userHome
+			</result>
+		</action>
+
+		<action name="logout" class="com.sample.bank.actions.LoginAction"
+			method="doLogout">
+			<result name="success" type="redirectAction">
+				<param name="actionName">home</param>
 			</result>
 		</action>
 	</package>

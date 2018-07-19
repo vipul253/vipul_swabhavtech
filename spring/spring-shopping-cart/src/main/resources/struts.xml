@@ -7,7 +7,7 @@
 
 		<interceptors>
 			<interceptor name="checkLogin"
-				class="com.shopping.cart.interceptors.LoginInterceptor"></interceptor>
+				class="com.sample.bank.interceptors.LoginInterceptor"></interceptor>
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="checkLogin" />
 				<interceptor-ref name="defaultStack" />

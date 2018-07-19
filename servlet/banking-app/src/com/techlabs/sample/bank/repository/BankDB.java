@@ -114,7 +114,7 @@ public class BankDB {
 			CSV += t.getName() + ", " + t.getAmount() + ", " + t.getType()
 					+ ", " + t.getDate() + ";\n";
 		}
-		return CSV;
+		return "success";
 	}
 
 	public void CatchException(SQLException ex) {

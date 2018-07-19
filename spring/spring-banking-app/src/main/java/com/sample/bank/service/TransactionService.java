@@ -1,5 +1,18 @@
 package com.sample.bank.service;
 
-public class TransactionService {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.sample.bank.entity.Transaction;
+import com.sample.bank.repository.BankRepository;
+
+@Service
+public class TransactionService {
+	
+	@Autowired
+	private BankRepository bankRepository;
+	
+	public void makeTransaction(String name, Transaction txn){
+		bankRepository.makeTransaction(name,txn);
+	}
 }

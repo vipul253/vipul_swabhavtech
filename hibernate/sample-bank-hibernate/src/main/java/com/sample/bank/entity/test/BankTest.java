@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -34,15 +35,21 @@ public class BankTest {
 		
 		user.setRole("user");
 		a1.setBalance(1234);
-		a1.setStatus("active");
+		user.setStatus("active");
 		t.setType("D");
 		t.setAmount(1234);
 		
+		User admin = new User("nieu","123");
+		admin.setRole("admin");
+		admin.setStatus("active");
 		try {
 			System.out.println("in repo");
 			session = factory.openSession();
 			txn = session.beginTransaction();
-			session.save(user);
+			Query query = session.createQuery("from User");
+			System.out.println(query.list());
+//			session.save(user);
+//			session.save(admin);
 			txn.commit();
 			System.out.println("out of repo");
 			

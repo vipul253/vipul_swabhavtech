@@ -32,10 +32,6 @@ public class LoginAction extends ActionSupport implements SessionAware,ModelDriv
 		userSession = session;
 	}
 	
-	public Map<String,Object> getSession(){
-		return userSession;
-	}
-	
 	public String execute(){
 		return "login";
 	}

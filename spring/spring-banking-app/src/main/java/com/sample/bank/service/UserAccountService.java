@@ -1,5 +1,56 @@
 package com.sample.bank.service;
 
-public class UserAccountService {
+import java.util.List;
+import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.sample.bank.entity.Account;
+import com.sample.bank.entity.Transaction;
+import com.sample.bank.entity.User;
+import com.sample.bank.repository.BankRepository;
+
+@Service
+public class UserAccountService {
+	
+	@Autowired
+	private BankRepository bankRepository;
+	
+	public void addAccount(User user, double amount) {
+		Account account = new Account();
+		account.setBalance(amount);
+		user.setStatus("active");
+		user.setRole("user");
+		user.setAcc(account);
+		bankRepository.addAccount(user);
+	}
+	
+	public boolean checkUser(String name, String password){
+		if(bankRepository.checkUser(name, password)){
+			return true;
+		}
+		return false;
+	}
+	
+	public String getRole(String name, String password){
+		return bankRepository.getRole(name, password);
+	}
+	
+	public String getAccountStatus(String name, String password){
+		return bankRepository.getAccountStatus(name, password);
+	}
+	
+	public List<Transaction> getTransactions(String name){
+		return bankRepository.getTransactions(name);
+		
+	}	
+	
+	public List<User> getUsers(){
+		return bankRepository.getUsers();
+	}
+	
+	public void changeAccountState(UUID id){
+		bankRepository.changeAccountState(id);
+	}
 }
