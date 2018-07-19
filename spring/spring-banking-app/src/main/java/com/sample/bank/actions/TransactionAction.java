@@ -5,12 +5,14 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.sample.bank.entity.Transaction;
+import com.sample.bank.exceptions.InsufficientBalanceException;
 import com.sample.bank.service.TransactionService;
 import com.sample.bank.view.model.TransactionView;
 
-public class TransactionAction implements ModelDriven<TransactionView>, SessionAware {
+public class TransactionAction extends ActionSupport implements ModelDriven<TransactionView>, SessionAware {
 	
 	@Autowired
 	private TransactionService svc;
@@ -34,7 +36,12 @@ public class TransactionAction implements ModelDriven<TransactionView>, SessionA
 	
 	public String transact(){
 		Transaction transaction = new Transaction(txnView.getAmount(),txnView.getType());
-		svc.makeTransaction(userSession.get("name").toString(), transaction);
+		try {
+			svc.makeTransaction(userSession.get("name").toString(), transaction);
+		} catch (InsufficientBalanceException e) {
+			addFieldError("balanceError", "insufficeint balance, cannot withdraw");
+			return "input";
+		}
 		return "success";
 	}
 }

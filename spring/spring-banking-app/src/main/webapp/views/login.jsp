@@ -28,8 +28,7 @@
 				<input type="password" class="form-control" name="password" required>
 			</div>
 			<s:if test="fieldErrors.get('loginError').size() > 0">
-				<div class="alert alert-danger alert-dismissible"
-					style="display:<s:property value="disp"/>">
+				<div class="alert alert-danger alert-dismissible">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
 					<strong>alert! </strong>
 					<s:property value="fieldErrors.get('loginError').get(0)" />

@@ -32,7 +32,7 @@
 		</action>
 
 		<action name="register"
-			class="com.sample.bank.actions.RegisterAction">
+			class="com.sample.bank.actions.DisplayAction">
 			<result name="success">
 				/views/register.jsp
 			</result>
@@ -42,6 +42,9 @@
 			class="com.sample.bank.actions.RegisterAction" method="register">
 			<result name="success">
 				/views/login.jsp
+			</result>
+			<result name="input">
+				/views/register.jsp
 			</result>
 		</action>
 

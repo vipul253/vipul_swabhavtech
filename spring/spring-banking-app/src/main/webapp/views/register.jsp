@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Register</title>
 <jsp:include page="scripts.jsp" />
+<script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -20,14 +21,14 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Username</span>
 					</div>
-					<input type="text" class="form-control" name="name" required/>
+					<input type="text" class="form-control" name="name" required />
 				</div>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
 					</div>
 					<input type="password" class="form-control" id="pwd1" name="pwd"
-						required/>
+						required />
 				</div>
 				<div class="form-group">
 					<div class="input-group mb-3">
@@ -36,7 +37,7 @@
 								Password</span>
 						</div>
 						<input type="password" class="form-control" id="pwd2"
-							name="password" required/>
+							name="password" required />
 					</div>
 					<small><strong id="matching"></strong></small>
 				</div>
@@ -46,9 +47,26 @@
 							<span class="input-group-text" id="inputGroup-sizing-sm">Amount</span>
 						</div>
 						<input type="number" class="form-control" id="amount"
-							name="amount" required/>
+							name="amount" required />
 					</div>
 				</div>
+				<div class="g-recaptcha"
+					data-sitekey="6LctBWUUAAAAAJCcGhTk8rpTeFGgxtl2S6DrEwsN">
+				</div>
+				<s:if test="fieldErrors.get('captchaError').size() > 0">
+					<div class="alert alert-danger alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>alert! </strong>
+						<s:property value="fieldErrors.get('captchaError').get(0)" />
+					</div>
+				</s:if>
+				<s:if test="fieldErrors.get('amountError').size() > 0">
+					<div class="alert alert-danger alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>alert! </strong>
+						<s:property value="fieldErrors.get('amountError').get(0)" />
+					</div>
+				</s:if>
 				<div class="">
 					<input type="submit" id="submitbtn" value="Register"
 						class="btn btn-primary" />
@@ -58,7 +76,7 @@
 	</div>
 	<script>
 		$(document).ready(function() {
-			$('#pwd2').on('keyup', function() {
+			$('#pwd2').on('keyup',function() {
 				if ($('#pwd1').val() == $('#pwd2').val()) {
 					$('#matching').html("matching").css(
 							'color', '#0df00d');
