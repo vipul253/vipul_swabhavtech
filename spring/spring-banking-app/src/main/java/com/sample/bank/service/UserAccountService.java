@@ -53,4 +53,12 @@ public class UserAccountService {
 	public void changeAccountState(UUID id){
 		bankRepository.changeAccountState(id);
 	}
+	
+	public void makeCSV(String name){
+		bankRepository.makeCSV(name);
+	}
+	
+	public void setLoginTime(String name) {
+		bankRepository.setLastLoggedIn(name);
+	}
 }

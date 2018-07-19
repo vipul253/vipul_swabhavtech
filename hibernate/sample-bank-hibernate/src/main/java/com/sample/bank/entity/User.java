@@ -1,5 +1,6 @@
 package com.sample.bank.entity;
 
+import java.util.Date;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -28,6 +29,7 @@ public class User {
 	private String password;
 	private String role;
 	private String status;
+	private Date lastLogin;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn
@@ -42,7 +44,15 @@ public class User {
 		this.name = name;
 		this.password = password;
 	}
-	
+
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
 	public String getStatus() {
 		return status;
 	}

@@ -7,7 +7,7 @@
 
 		<interceptors>
 			<interceptor name="checkLogin"
-				class="com.shopping.cart.interceptors.LoginInterceptor"></interceptor>
+				class="com.sample.bank.interceptors.LoginInterceptor"></interceptor>
 			<interceptor-stack name="loginStack">
 				<interceptor-ref name="checkLogin" />
 				<interceptor-ref name="defaultStack" />
@@ -77,6 +77,7 @@
 		</action>
 
 		<action name="makeTransaction" class="com.sample.bank.actions.TransactionAction">
+			<interceptor-ref name="loginStack" />
 			<result name="success">
 				/views/doTransaction.jsp
 			</result>
@@ -84,6 +85,7 @@
 
 		<action name="transact" class="com.sample.bank.actions.TransactionAction"
 			method="transact">
+			<interceptor-ref name="loginStack" />
 			<result name="success" type="redirect">
 				userHome
 			</result>
@@ -91,12 +93,22 @@
 
 		<action name="changeAccountState" class="com.sample.bank.actions.AdminAction"
 			method="changeAccountState">
+			<interceptor-ref name="loginStack" />
 			<result name="success" type="redirect">
 				adminHome
 			</result>
 		</action>
 
-		<action name="makeCSV" class="com.sample.bank.actions.DisplayAction">
+		<action name="showTransactions" class="com.sample.bank.actions.AdminAction"
+			method="showTransactions">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/userHome.jsp
+			</result>
+		</action>
+
+		<action name="makeCSV" class="com.sample.bank.actions.DownloadPassbookAction">
+			<interceptor-ref name="loginStack" />
 			<result name="success" type="redirect">
 				userHome
 			</result>
@@ -104,6 +116,7 @@
 
 		<action name="logout" class="com.sample.bank.actions.LoginAction"
 			method="doLogout">
+			<interceptor-ref name="loginStack" />
 			<result name="success" type="redirectAction">
 				<param name="actionName">home</param>
 			</result>

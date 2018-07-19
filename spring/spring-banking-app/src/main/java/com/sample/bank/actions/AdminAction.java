@@ -40,5 +40,4 @@ public class AdminAction implements ModelDriven<AdminView>,SessionAware {
 		adminView.setTransactions(svc.getTransactions(ServletActionContext.getRequest().getParameter("name")));
 		return "success";
 	}
-
 }

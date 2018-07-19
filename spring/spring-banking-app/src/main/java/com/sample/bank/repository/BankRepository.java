@@ -1,10 +1,10 @@
 package com.sample.bank.repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -30,12 +30,10 @@ public class BankRepository {
 		transaction.setType("D");
 		user.getAcc().addTransaction(transaction);
 		try {
-			System.out.println("in repo");
 			session = factory.openSession();
 			txn = session.beginTransaction();
 			session.save(user);
 			txn.commit();
-			System.out.println("out of repo");
 
 		} catch (HibernateException ex) {
 			ex.printStackTrace();
@@ -159,20 +157,41 @@ public class BankRepository {
 		}
 		return users;
 	}
-	
-	public void changeAccountState(UUID id){
+
+	public void changeAccountState(UUID id) {
 		try {
 			session = factory.openSession();
 			txn = session.beginTransaction();
 			Query query = session.createQuery("from User where id=:id");
 			query.setParameter("id", id);
-			User user = (User)query.uniqueResult();
-			if(user.getStatus().equals("active")){
+			User user = (User) query.uniqueResult();
+			if (user.getStatus().equals("active")) {
 				user.setStatus("locked");
-			}
-			else {
+			} else {
 				user.setStatus("active");
 			}
+			session.save(user);
+			txn.commit();
+		} catch (HibernateException ex) {
+			txn.rollback();
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
+	public void makeCSV(String name) {
+
+	}
+
+	public void setLastLoggedIn(String name) {
+		try {
+			session = factory.openSession();
+			txn = session.beginTransaction();
+			Query query = session.createQuery("from User where name=:name");
+			query.setParameter("name", name);
+			User user = (User) query.uniqueResult();
+			user.setLastLogin(new Date());
 			session.save(user);
 			txn.commit();
 		} catch (HibernateException ex) {

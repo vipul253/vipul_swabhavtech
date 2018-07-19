@@ -10,24 +10,25 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<div>
+	<div class="table-responsive">
 		<table class="table table-light table-striped table-hover">
 			<thead class="thead">
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
 					<th>Balance</th>
+					<th>Last Login</th>
 					<th>Status</th>
 				</tr>
 			</thead>
 			<tbody>
 				<s:iterator value="users">
 					<tr>
-						<td><a class="btn btn-primary"
-							href="changeAccountState?name=<s:property value='name'/>"><s:property
-									value="id" /></a></td>
-						<td><s:property value="name" /></td>
+						<td><s:property value="id" /></td>
+						<td><a href="showTransactions?name=<s:property value='name'/>">
+						<s:property value="name" /></a></td>
 						<td><s:property value="acc.getBalance()" /></td>
+						<td><s:property value="lastLogin"/></td>
 						<td><a class="btn btn-primary"
 							href="changeAccountState?id=<s:property value='id'/>"><s:property
 									value="status" /></a></td>

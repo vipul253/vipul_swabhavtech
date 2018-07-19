@@ -46,10 +46,8 @@ public class BankTest {
 			System.out.println("in repo");
 			session = factory.openSession();
 			txn = session.beginTransaction();
-			Query query = session.createQuery("from User");
-			System.out.println(query.list());
-//			session.save(user);
-//			session.save(admin);
+			session.save(user);
+			session.save(admin);
 			txn.commit();
 			System.out.println("out of repo");
 			

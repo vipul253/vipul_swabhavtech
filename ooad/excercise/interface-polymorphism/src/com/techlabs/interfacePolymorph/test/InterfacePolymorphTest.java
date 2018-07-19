@@ -13,7 +13,7 @@ public class InterfacePolymorphTest {
 		atTheParty(boy);
 		
 		atTheCinema(boy);
-		atTheCinema(man);
+		//atTheCinema(man);
 	}
 	
 	public static void atTheParty(Honorable obj){

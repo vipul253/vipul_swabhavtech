@@ -40,6 +40,7 @@ public class LoginAction extends ActionSupport implements
 			String role = svc.getRole(loginView.getUsername(), loginView.getPassword());
 			if(role.equals("admin")){
 				userSession.put("name", loginView.getUsername());
+				userSession.put("role", "admin");
 				return "admin";
 			}
 			if(role.equals("user")) {
@@ -47,6 +48,7 @@ public class LoginAction extends ActionSupport implements
 				if(accountStatus.equals("active")){
 					userSession.put("name", loginView.getUsername());
 					userSession.put("role", "user");
+					svc.setLoginTime(loginView.getUsername());
 					return "user";
 				}
 				addFieldError("loginError", "your account is locked");
