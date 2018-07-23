@@ -10,11 +10,10 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.sample.bank.service.UserAccountService;
 import com.sample.bank.view.model.LoginView;
 
-public class LoginAction extends ActionSupport implements
-		ModelDriven<LoginView>, SessionAware {
+public class LoginAction extends ActionSupport implements ModelDriven<LoginView>, SessionAware {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private UserAccountService svc;
 	private LoginView loginView;
@@ -25,7 +24,7 @@ public class LoginAction extends ActionSupport implements
 		loginView = new LoginView();
 		return loginView;
 	}
-	
+
 	@Override
 	public void setSession(Map<String, Object> session) {
 		userSession = session;
@@ -37,32 +36,51 @@ public class LoginAction extends ActionSupport implements
 
 	public String checkUser() {
 		if (svc.checkUser(loginView.getUsername(), loginView.getPassword())) {
+			checkAttempts();
 			String role = svc.getRole(loginView.getUsername(), loginView.getPassword());
-			if(role.equals("admin")){
-				userSession.put("name", loginView.getUsername());
-				userSession.put("role", "admin");
-				return "admin";
-			}
-			if(role.equals("user")) {
-				String accountStatus = svc.getAccountStatus(loginView.getUsername(), loginView.getPassword());
-				if(accountStatus.equals("active")){
-					userSession.put("name", loginView.getUsername());
-					userSession.put("role", "user");
-					svc.setLoginTime(loginView.getUsername());
-					return "user";
-				}
-				addFieldError("loginError", "your account is locked");
-				return "input";
-			}
+			return checkRole(role);
 		}
+		svc.increaseAttempts(loginView.getUsername());
 		addFieldError("loginError", "invalid user name or password");
 		return "input";
-
 	}
-	
-	public String doLogout(){
+
+	public String doLogout() {
 		userSession.clear();
 		return "success";
+	}
+
+	public String checkRole(String role) {
+		if (role.equals("admin")) {
+			userSession.put("name", loginView.getUsername());
+			userSession.put("role", "admin");
+			svc.setLoginTime(loginView.getUsername());
+			svc.resetAttempts(loginView.getUsername());
+			return "admin";
+		}
+		if (role.equals("user")) {
+			String accountState = svc.getAccountStatus(loginView.getUsername(), loginView.getPassword());
+			return checkAccountState(accountState);
+		}
+		return "input";
+	}
+
+	public String checkAccountState(String accountState) {
+		if (accountState.equals("active")) {
+			userSession.put("name", loginView.getUsername());
+			userSession.put("role", "user");
+			svc.setLoginTime(loginView.getUsername());
+			svc.resetAttempts(loginView.getUsername());
+			return "user";
+		}
+		addFieldError("loginError", "your account is locked");
+		return "input";
+	}
+
+	public void checkAttempts() {
+		if (svc.getAttempts(loginView.getUsername()) >= 3) {
+			svc.changeAccountState(loginView.getUsername());
+		}
 	}
 
 }

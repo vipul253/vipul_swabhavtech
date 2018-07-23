@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="main" extends="struts-default">
+
+		<action name="" class="com.bank.user.actions.DisplayHomeAction">
+			<result name="success">
+				/views/home.jsp
+			</result>
+		</action>
+
+		<action name="home"
+			class="com.bank.user.actions.DisplayHomeAction">
+			<result name="success">
+				/views/home.jsp
+			</result>
+		</action>
+		
+		<action name="register"
+			class="com.bank.user.actions.DisplayHomeAction">
+			<result name="success">
+				/views/register.jsp
+			</result>
+		</action>
+
+		<action name="makeAccount"
+			class="com.bank.user.actions.RegisterAction" method="register">
+			<result name="success">
+				/views/login.jsp
+			</result>
+			<result name="input">
+				/views/register.jsp
+			</result>
+		</action>
+		
+		<action name="login" class="com.bank.user.actions.LoginAction">
+			<result name="success">
+				/views/login.jsp
+			</result>
+		</action>
+
+		<action name="doLogin"
+			class="com.bank.user.actions.LoginAction" method="checkUser">
+			<result name="admin" type="redirect">
+				home
+			</result>
+			<result name="user" type="redirect">
+				home
+			</result>
+			<result name="input">
+				/views/login.jsp
+			</result>
+		</action>
+		
+		<action name="logout"
+			class="com.bank.user.actions.LoginAction" method="doLogout">
+			<result name="success">
+				/views/login.jsp
+			</result>
+		</action>
+	</package>
+</struts>

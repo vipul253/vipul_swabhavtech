@@ -163,12 +163,12 @@ public class BankRepository {
 		return users;
 	}
 
-	public void changeAccountState(UUID id) {
+	public void changeAccountState(String name) {
 		try {
 			session = factory.openSession();
 			txn = session.beginTransaction();
-			Query query = session.createQuery("from User where id=:id");
-			query.setParameter("id", id);
+			Query query = session.createQuery("from User where name=:name");
+			query.setParameter("name", name);
 			User user = (User) query.uniqueResult();
 			if (user.getStatus().equals("active")) {
 				user.setStatus("locked");
@@ -201,5 +201,60 @@ public class BankRepository {
 		} finally {
 			session.close();
 		}
+	}
+	
+	public void increaseAttempts(String name) {
+		try {
+			session = factory.openSession();
+			txn = session.beginTransaction();
+			Query query = session.createQuery("from User where name=:name");
+			query.setParameter("name", name);
+			User user = (User) query.uniqueResult();
+			user.setLoginAttempts(user.getLoginAttempts()+1);
+			session.save(user);
+			txn.commit();
+		} catch (HibernateException ex) {
+			txn.rollback();
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	
+	public void resetAttempts(String name) {
+		try {
+			session = factory.openSession();
+			txn = session.beginTransaction();
+			Query query = session.createQuery("from User where name=:name");
+			query.setParameter("name", name);
+			User user = (User) query.uniqueResult();
+			user.setLoginAttempts(0);
+			session.save(user);
+			txn.commit();
+		} catch (HibernateException ex) {
+			txn.rollback();
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	
+	public int getAttempts(String name) {
+		int attempts = 0;
+		try {
+			session = factory.openSession();
+			txn = session.beginTransaction();
+			Query query = session.createQuery("from User where name=:name");
+			query.setParameter("name", name);
+			User user = (User) query.uniqueResult();
+			attempts = user.getLoginAttempts();
+			txn.commit();
+		} catch (HibernateException ex) {
+			txn.rollback();
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return attempts;
 	}
 }

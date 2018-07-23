@@ -31,6 +31,13 @@
 				</div>
 				<input type="number" class="form-control" name="amount" required />
 			</div>
+			<s:if test="fieldErrors.get('balanceError').size() > 0">
+				<div class="alert alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>alert! </strong>
+					<s:property value="fieldErrors.get('balanceError').get(0)" />
+				</div>
+			</s:if>
 			<div>
 				<input type="submit" value="submit" class="btn btn-primary" />
 			</div>

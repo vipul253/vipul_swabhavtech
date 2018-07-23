@@ -12,7 +12,7 @@
 %>
 <header>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-		<a class="navbar-brand" href="">Sample Bank</a>
+		<a class="navbar-brand" href="home">Sample Bank</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navList" aria-controls="navList" aria-expanded="true"
 			aria-label="Toggle navigation">
@@ -21,7 +21,7 @@
 
 		<div class="collapse navbar-collapse" id="navList">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="">Home
+				<li class="nav-item active"><a class="nav-link" href="home">Home
 				</a></li>
 				<%
 					if (role=="user") {
@@ -36,7 +36,7 @@
 				%>
 			</ul>
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href=""> <i
+				<li class="nav-item"><a class="nav-link" href="home"> <i
 						class="fa fa-user" aria-hidden="true"></i> <%=username%>
 				</a></li>
 				<%

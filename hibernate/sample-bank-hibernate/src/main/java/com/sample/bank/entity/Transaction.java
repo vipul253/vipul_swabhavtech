@@ -7,6 +7,8 @@ import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,7 +28,8 @@ public class Transaction {
 	@Column(columnDefinition = "BINARY(16)", name = "id", unique = true)
 	private UUID id;
 	private double amount;
-	private String type;
+	@Enumerated(EnumType.STRING)
+	private TransactionType transactionType;
 	private Date date;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -45,12 +48,12 @@ public class Transaction {
 		this.amount = amount;
 	}
 
-	public String getType() {
-		return type;
+	public TransactionType getTransactionType() {
+		return transactionType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setTransactionType(TransactionType transactionType) {
+		this.transactionType = transactionType;
 	}
 
 	public Account getAcc() {

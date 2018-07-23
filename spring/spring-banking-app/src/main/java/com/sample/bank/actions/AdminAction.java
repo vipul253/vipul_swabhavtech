@@ -32,7 +32,7 @@ public class AdminAction implements ModelDriven<AdminView>,SessionAware {
 	}
 	
 	public String changeAccountState() {
-		svc.changeAccountState(UUID.fromString(ServletActionContext.getRequest().getParameter("id")));
+		svc.changeAccountState(ServletActionContext.getRequest().getParameter("name"));
 		return "success";
 	}
 	

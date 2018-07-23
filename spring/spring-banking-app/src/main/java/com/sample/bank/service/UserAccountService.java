@@ -1,7 +1,6 @@
 package com.sample.bank.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,11 +49,23 @@ public class UserAccountService {
 		return bankRepository.getUsers();
 	}
 	
-	public void changeAccountState(UUID id){
-		bankRepository.changeAccountState(id);
+	public void changeAccountState(String name){
+		bankRepository.changeAccountState(name);
 	}
 	
 	public void setLoginTime(String name) {
 		bankRepository.setLastLoggedIn(name);
+	}
+	
+	public void increaseAttempts(String name) {
+		bankRepository.increaseAttempts(name);
+	}
+	
+	public int getAttempts(String name) {
+		return bankRepository.getAttempts(name);
+	}
+	
+	public void resetAttempts(String name) {
+		bankRepository.resetAttempts(name);
 	}
 }

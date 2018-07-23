@@ -30,6 +30,7 @@ public class User {
 	private String role;
 	private String status;
 	private Date lastLogin;
+	private int loginAttempts;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn
@@ -43,6 +44,14 @@ public class User {
 		super();
 		this.name = name;
 		this.password = password;
+	}
+
+	public int getLoginAttempts() {
+		return loginAttempts;
+	}
+
+	public void setLoginAttempts(int loginAttempts) {
+		this.loginAttempts = loginAttempts;
 	}
 
 	public Date getLastLogin() {

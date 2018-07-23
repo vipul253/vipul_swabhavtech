@@ -6,7 +6,7 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:4040/sample_bank</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:4040/bank_app</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">root</property>
 		<property name="show_sql">true</property>
@@ -16,5 +16,8 @@
 		<mapping class="com.sample.bank.entity.Account" />
 		<mapping class="com.sample.bank.entity.User" />
 		<mapping class="com.sample.bank.entity.Transaction" />
+		<mapping class="com.sample.bank.entity.Recipient" />
+		<mapping class="com.sample.bank.entity.UserDetails" />
+		<mapping class="com.sample.bank.entity.Appointment" />		
 	</session-factory>
 </hibernate-configuration>

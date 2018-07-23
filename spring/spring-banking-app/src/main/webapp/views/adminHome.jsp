@@ -30,7 +30,7 @@
 						<td><s:property value="acc.getBalance()" /></td>
 						<td><s:property value="lastLogin"/></td>
 						<td><a class="btn btn-primary"
-							href="changeAccountState?id=<s:property value='id'/>"><s:property
+							href="changeAccountState?name=<s:property value='name'/>"><s:property
 									value="status" /></a></td>
 					</tr>
 				</s:iterator>

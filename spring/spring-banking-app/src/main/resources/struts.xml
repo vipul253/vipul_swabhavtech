@@ -98,6 +98,9 @@
 			<result name="success" type="redirect">
 				userHome
 			</result>
+			<result name="input">
+				/views/doTransaction.jsp
+			</result>
 		</action>
 
 		<action name="changeAccountState"
