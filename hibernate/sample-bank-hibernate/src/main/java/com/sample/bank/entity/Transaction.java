@@ -39,6 +39,12 @@ public class Transaction {
 	public Transaction() {
 		this.date = Calendar.getInstance().getTime();
 	}
+	
+	public Transaction(double amount, TransactionType transactionType) {
+		this();
+		this.amount = amount;
+		this.transactionType = transactionType;
+	}
 
 	public double getAmount() {
 		return amount;

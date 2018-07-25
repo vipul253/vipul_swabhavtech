@@ -1,5 +1,7 @@
 package com.bank.user.actions;
 
+import javax.mail.MessagingException;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,18 +30,24 @@ public class RegisterAction extends ActionSupport implements ModelDriven<Registe
 	}
 
 	public String register() {
-		svc.addAccount(new User(registerView.getEmail(), registerView.getName(), registerView.getPassword()));
+		try {
+			svc.addAccount(new User(registerView.getEmail(), registerView.getName(), 
+					registerView.getPassword()));
+		} catch (MessagingException e) {
+			addFieldError("captchaError", "couldn't send email, check email");
+			return "input";
+		}
 		return "success";
 	}
 
 	@Override
 	public void validate() {
+		System.out.println("1");
 		String gRecaptchaResponse = ServletActionContext.getRequest()
 				.getParameter("g-recaptcha-response");
-		
+
 		if (!VerifyRecaptcha.verify(gRecaptchaResponse)) {
 			addFieldError("captchaError", "verify captcha");
 		}
 	}
-
 }

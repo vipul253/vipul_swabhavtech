@@ -30,6 +30,7 @@ public class Appointment {
 	private User user;
 	private String subject;
 	private Date date;
+	private AppointmentStatus appointmentStatus;
 
 	public Appointment() {
 
@@ -39,6 +40,14 @@ public class Appointment {
 		this();
 		this.subject = subject;
 		this.date = date;
+	}
+
+	public AppointmentStatus getAppointmentStatus() {
+		return appointmentStatus;
+	}
+
+	public void setAppointmentStatus(AppointmentStatus appointmentStatus) {
+		this.appointmentStatus = appointmentStatus;
 	}
 
 	public User getUser() {

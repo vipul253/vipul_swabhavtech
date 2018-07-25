@@ -12,7 +12,7 @@
 	}
 %>
 <header>
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
 		<a class="navbar-brand" href="home">Sample Bank</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navList" aria-controls="navList" aria-expanded="true"
@@ -22,16 +22,16 @@
 
 		<div class="collapse navbar-collapse" id="navList">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="home">Home
-				</a></li>
 				<%
 					if (role.equals(UserRole.USER)) {
 				%>
-				<li class="nav-item"><a class="nav-link" href="makeCSV">Get
-						CSV</a></li>
-				<li class="nav-item"><a class="nav-link" href="makeTransaction">Make
-						Transaction</a></li>
-
+				<li class="nav-item"><a class="nav-link" href="userHome">Home
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="accounts">Accounts</a></li>
+				<li class="nav-item"><a class="nav-link" href="transactions">Transactions</a></li>
+				<li class="nav-item"><a class="nav-link" href="recipients">Recipients</a></li>
+				<li class="nav-item"><a class="nav-link" href="appointments">Appointments</a></li>
+				<li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
 				<%
 					}
 				%>

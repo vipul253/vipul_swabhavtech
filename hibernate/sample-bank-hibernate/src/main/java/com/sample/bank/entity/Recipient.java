@@ -22,7 +22,7 @@ public class Recipient {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn
 	@MapsId
-	private Account acc;
+	private User user;
 
 	@Column(columnDefinition = "BINARY(16)", nullable = false)
 	private UUID recipientID;
@@ -35,12 +35,12 @@ public class Recipient {
 		this.recipientID = recipientID;
 	}
 
-	public Account getAcc() {
-		return acc;
+	public User getUser() {
+		return user;
 	}
 
-	public void setAcc(Account acc) {
-		this.acc = acc;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public UUID getId() {

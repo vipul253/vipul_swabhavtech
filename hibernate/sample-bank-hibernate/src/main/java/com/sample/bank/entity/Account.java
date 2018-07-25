@@ -39,16 +39,24 @@ public class Account {
 	@OneToMany(mappedBy = "acc", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Transaction> transactions;
 
-	@OneToMany(mappedBy = "acc", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Recipient> recipients = new HashSet<>();
+	
 	
 	public Account() {
 		this.transactions = new HashSet<>();
-		this.recipients = new HashSet<>();
 	}
 	
-	public void addRecipient(Recipient recp) {
-		recipients.add(recp);
+
+	
+	public void addTransaction(Transaction txn) {
+		transactions.add(txn);
+	}
+	
+	public void deposit(double amount){
+		this.balance += amount;
+	}
+	
+	public void withdraw(double amount) {
+		this.balance -= amount;
 	}
 
 	public UUID getId() {
@@ -69,14 +77,6 @@ public class Account {
 
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
-	}
-
-	public Set<Recipient> getRecipients() {
-		return recipients;
-	}
-
-	public void setRecipients(Set<Recipient> recipients) {
-		this.recipients = recipients;
 	}
 
 	public Set<Transaction> getTransactions() {

@@ -52,6 +52,18 @@ public class Account {
 	public void addRecipient(Recipient recp) {
 		recipients.add(recp);
 	}
+	
+	public void addTransaction(Transaction txn) {
+		transactions.add(txn);
+	}
+	
+	public void deposit(double amount){
+		this.balance += amount;
+	}
+	
+	public void withdraw(double amount) {
+		this.balance -= amount;
+	}
 
 	public UUID getId() {
 		return id;

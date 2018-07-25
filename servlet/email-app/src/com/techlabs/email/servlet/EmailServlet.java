@@ -46,7 +46,7 @@ public class EmailServlet extends HttpServlet {
 		String host = "smtp.gmail.com";
 		String port = "587";
 		String mailFrom = "vipulsawant25@gmail.com";
-		String password = "Osh5m2@@";
+		String password = "*****";
 		
 		String recipient = request.getParameter("sendTo");
 		String subject = request.getParameter("subject");

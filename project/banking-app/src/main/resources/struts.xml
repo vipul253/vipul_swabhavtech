@@ -5,6 +5,19 @@
 <struts>
 	<package name="main" extends="struts-default">
 
+		<interceptors>
+			<interceptor name="checkLogin"
+				class="com.bank.interceptors.LoginInterceptor"></interceptor>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="checkLogin" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+			<result name="login" type="redirect">/views/login.jsp</result>
+		</global-results>
+
 		<action name="" class="com.bank.user.actions.DisplayHomeAction">
 			<result name="success">
 				/views/home.jsp
@@ -17,7 +30,7 @@
 				/views/home.jsp
 			</result>
 		</action>
-		
+
 		<action name="register"
 			class="com.bank.user.actions.DisplayHomeAction">
 			<result name="success">
@@ -34,10 +47,153 @@
 				/views/register.jsp
 			</result>
 		</action>
-		
+
+		<action name="verify"
+			class="com.bank.user.actions.VerifyEmailAction" method="verifyUser">
+			<result name="success" type="redirect">
+				login
+			</result>
+		</action>
+
 		<action name="login" class="com.bank.user.actions.LoginAction">
 			<result name="success">
 				/views/login.jsp
+			</result>
+		</action>
+
+		<action name="userHome"
+			class="com.bank.user.actions.UserAction">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/userHome.jsp
+			</result>
+		</action>
+
+		<action name="transactions"
+			class="com.bank.user.actions.UserAction" method="showTransactions">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/transactions.jsp
+			</result>
+		</action>
+
+		<action name="showSavingsTransactions"
+			class="com.bank.user.actions.UserAction"
+			method="showSavingsTransactions">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/transactions.jsp
+			</result>
+		</action>
+
+		<action name="showCurrentTransactions"
+			class="com.bank.user.actions.UserAction"
+			method="showCurrentTransactions">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/transactions.jsp
+			</result>
+		</action>
+
+		<action name="accounts"
+			class="com.bank.user.actions.UserAction" method="showAccounts">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/accounts.jsp
+			</result>
+		</action>
+
+		<action name="recipients"
+			class="com.bank.user.actions.UserAction" method="showRecipients">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/recipients.jsp
+			</result>
+		</action>
+
+		<action name="appointments"
+			class="com.bank.user.actions.UserAction" method="showAppointments">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/appointments.jsp
+			</result>
+		</action>
+
+		<action name="profile" class="com.bank.user.actions.UserAction"
+			method="showProfile">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/appointments.jsp
+			</result>
+		</action>
+
+		<action name="currentAccountForm"
+			class="com.bank.user.actions.UserAction">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/currentAccountForm.jsp
+			</result>
+		</action>
+
+		<action name="savingsAccountForm"
+			class="com.bank.user.actions.UserAction">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/savingsAccountForm.jsp
+			</result>
+		</action>
+
+		<action name="makeCurrentAccount"
+			class="com.bank.user.actions.UserAction" method="makeCurrentAccount">
+			<interceptor-ref name="loginStack" />
+			<result name="success" type="redirect">
+				accounts
+			</result>
+		</action>
+
+		<action name="makeSavingsAccount"
+			class="com.bank.user.actions.UserAction" method="makeSavingsAccount">
+			<interceptor-ref name="loginStack" />
+			<result name="success" type="redirect">
+				accounts
+			</result>
+		</action>
+
+		<action name="makeTransaction"
+			class="com.bank.user.actions.UserAction">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/doTransaction.jsp
+			</result>
+		</action>
+
+		<action name="transact"
+			class="com.bank.user.actions.TransactionAction" method="transact">
+			<interceptor-ref name="loginStack" />
+			<result name="success" type="redirect">
+				transactions
+			</result>
+			<result name="input">
+				/views/doTransaction.jsp
+			</result>
+		</action>
+
+		<action name="transferTo"
+			class="com.bank.user.actions.UserAction">
+			<interceptor-ref name="loginStack" />
+			<result name="success">
+				/views/transferBetweenAccounts.jsp
+			</result>
+		</action>
+
+		<action name="transfer"
+			class="com.bank.user.actions.TransactionAction" method="transfer">
+			<interceptor-ref name="loginStack" />
+			<result name="success" type="redirect">
+				transactions
+			</result>
+			<result name="input">
+				/views/transferBetweenAccounts.jsp
 			</result>
 		</action>
 
@@ -47,15 +203,15 @@
 				home
 			</result>
 			<result name="user" type="redirect">
-				home
+				userHome
 			</result>
 			<result name="input">
 				/views/login.jsp
 			</result>
 		</action>
-		
-		<action name="logout"
-			class="com.bank.user.actions.LoginAction" method="doLogout">
+
+		<action name="logout" class="com.bank.user.actions.LoginAction"
+			method="doLogout">
 			<result name="success">
 				/views/login.jsp
 			</result>
