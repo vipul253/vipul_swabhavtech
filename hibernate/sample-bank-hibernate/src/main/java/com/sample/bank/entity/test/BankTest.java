@@ -16,6 +16,7 @@ import org.hibernate.cfg.Configuration;
 import com.sample.bank.entity.Account;
 import com.sample.bank.entity.AccountType;
 import com.sample.bank.entity.Appointment;
+import com.sample.bank.entity.AppointmentStatus;
 import com.sample.bank.entity.Gender;
 import com.sample.bank.entity.Recipient;
 import com.sample.bank.entity.TransactionType;
@@ -33,59 +34,59 @@ public class BankTest {
 
 	public static void main(String[] args) {
 
-		User user = new User("vipul","abc@abc.com", "123");
-//		Account a1 = new Account();
-//		Account a2 = new Account();
-//		com.sample.bank.entity.Transaction t = new com.sample.bank.entity.Transaction();
-//		Set<com.sample.bank.entity.Transaction> transactions = new HashSet<>();
-//		Set<Account> accounts = new HashSet<>();
-//		transactions.add(t);
-//
-//		accounts.add(a1);
-//		accounts.add(a2);
-//
-//		a1.setUser(user);
-//		a2.setUser(user);
-//
-//		a1.setAccountType(AccountType.SAVINGS);
-//		a2.setAccountType(AccountType.CURRENT);
+		User user = new User("abc@abc.com","vipul", "123");
+		Account a1 = new Account();
+		Account a2 = new Account();
+		com.sample.bank.entity.Transaction t = new com.sample.bank.entity.Transaction();
+		Set<com.sample.bank.entity.Transaction> transactions = new HashSet<>();
+		Set<Account> accounts = new HashSet<>();
+		transactions.add(t);
+
+		accounts.add(a1);
+		accounts.add(a2);
+
+		a1.setUser(user);
+		a2.setUser(user);
+
+		a1.setAccountType(AccountType.SAVINGS);
+		a2.setAccountType(AccountType.CURRENT);
 
 		user.setRole(UserRole.USER);
-		//user.setAccounts(accounts);
+		user.setAccounts(accounts);
 		user.setActive(true);
 		user.setValid(true);
 
-//		t.setAcc(a2);
-//		t.setAmount(1234);
-//		t.setTransactionType(TransactionType.DEPOSIT);
-//
-//		a2.setTransactions(transactions);
-//		a2.setBalance(t.getAmount());
-//		Date dob=null;
-//		try {
-//			dob = new SimpleDateFormat("yyyy/MM/dd").parse("1996/03/25");
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-//		UserDetails profile = new UserDetails("vipul","sawant",Gender.MALE,dob);
-//		Recipient rec = new Recipient();
-//		Date apnDate=null;
-//		try {
-//			apnDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse("2018/07/26 02:00:00");
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-//		Appointment appointment = new Appointment("for loan",apnDate);
+		t.setAcc(a2);
+		t.setAmount(1234);
+		t.setTransactionType(TransactionType.DEPOSIT);
+
+		a2.setTransactions(transactions);
+		a2.setBalance(t.getAmount());
+		Date dob=null;
+		try {
+			dob = new SimpleDateFormat("yyyy/MM/dd").parse("1996/03/25");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		UserDetails profile = new UserDetails("vipul","sawant",Gender.MALE,dob);
+		Recipient rec = new Recipient();
+		Date apnDate=null;
+		try {
+			apnDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse("2018/07/26 02:00:00");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Appointment appointment = new Appointment("for loan",apnDate);
 		saveUser(user);
-		//setProfile(profile);
-		//setRecipient(rec);
-		//setAppointment(appointment);
+		setProfile(profile);
+		setRecipient(rec);
+		setAppointment(appointment);
 		
 		User admin = new User("admin","admin@bank.com","111");
 		admin.setRole(UserRole.ADMIN);
 		admin.setActive(true);
 		admin.setValid(true);
-		//saveUser(admin);
+		saveUser(admin);
 		//User user2 = new User("new","xyz@abc.com","123");
 		
 		
@@ -116,10 +117,13 @@ public class BankTest {
 			
 			testuser.addRecipient(rec);
 			rec.setUser(testuser);
+			rec.setRecipientName(testuser.getName());
+			rec.setRecipientID(testuser.getId());
 			session.save(testuser);
 			txn.commit();
 			System.out.println("out of repo");
 		} catch (HibernateException ex) {
+			txn.rollback();
 			ex.printStackTrace();
 		} finally {
 			session.close();
@@ -131,9 +135,12 @@ public class BankTest {
 			System.out.println("in repo");
 			session = factory.openSession();
 			txn = session.beginTransaction();
-			Query query = session.createQuery("from User where name='vipul'");
+			Query query = session.createQuery("from User where name=:name");
+			query.setParameter("name", "vipul");
 			User testuser = (User) query.uniqueResult();
 			profile.setUser(testuser);
+			System.out.println(testuser.getName());
+			System.out.println(profile.getFirstName());
 			testuser.setProfile(profile);
 			session.save(testuser);
 			txn.commit();
@@ -153,6 +160,7 @@ public class BankTest {
 			Query query = session.createQuery("from User where name='vipul'");
 			User testuser = (User) query.uniqueResult();
 			appointment.setUser(testuser);
+			appointment.setAppointmentStatus(AppointmentStatus.PENDING);
 			testuser.addAppointment(appointment);
 			session.save(testuser);
 			txn.commit();

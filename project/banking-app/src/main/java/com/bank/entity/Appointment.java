@@ -6,6 +6,8 @@ import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import com.bank.enums.AppointmentStatus;
 
 @Entity
 @Table(name = "APPOINTMENTS")
@@ -30,6 +34,8 @@ public class Appointment {
 	private User user;
 	private String subject;
 	private Date date;
+	@Enumerated(EnumType.STRING)
+	private AppointmentStatus appointmentStatus;
 
 	public Appointment() {
 
@@ -39,6 +45,14 @@ public class Appointment {
 		this();
 		this.subject = subject;
 		this.date = date;
+	}
+
+	public AppointmentStatus getAppointmentStatus() {
+		return appointmentStatus;
+	}
+
+	public void setAppointmentStatus(AppointmentStatus appointmentStatus) {
+		this.appointmentStatus = appointmentStatus;
 	}
 
 	public User getUser() {

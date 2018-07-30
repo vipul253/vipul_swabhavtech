@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bank.email.EmailTool;
 import com.bank.entity.Account;
+import com.bank.entity.Recipient;
 import com.bank.entity.User;
 import com.bank.enums.UserRole;
 import com.bank.exceptions.InsufficientBalanceException;
@@ -467,5 +468,21 @@ public class BankRepository {
 		} finally {
 			session.close();
 		}
+	}
+	
+	public List<Recipient> getRecipients(String name) {
+		List<Recipient> recipients = new ArrayList<>();
+		try {
+			session = factory.openSession();
+			Query query = session.createQuery("from User where name=:n");
+			query.setParameter("n", name);
+			User user = (User) query.uniqueResult();
+			recipients.addAll(user.getRecipients());
+		} catch (HibernateException ex) {
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return recipients;
 	}
 }

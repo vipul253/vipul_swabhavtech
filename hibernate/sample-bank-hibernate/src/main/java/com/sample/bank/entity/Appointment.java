@@ -6,6 +6,8 @@ import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,6 +32,7 @@ public class Appointment {
 	private User user;
 	private String subject;
 	private Date date;
+	@Enumerated(EnumType.STRING)
 	private AppointmentStatus appointmentStatus;
 
 	public Appointment() {

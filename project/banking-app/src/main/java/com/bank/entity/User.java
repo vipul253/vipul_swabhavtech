@@ -55,6 +55,17 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Appointment> appointments;
 	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Recipient> recipients = new HashSet<>();
+	
+	public Set<Recipient> getRecipients() {
+		return recipients;
+	}
+
+	public void setRecipients(Set<Recipient> recipients) {
+		this.recipients = recipients;
+	}
+
 	public User() {
 		accounts = new HashSet<>();
 		appointments = new HashSet<>();
@@ -73,6 +84,10 @@ public class User {
 	
 	public void addAppointment(Appointment appointment) {
 		appointments.add(appointment);
+	}
+	
+	public void addRecipient(Recipient recp) {
+		recipients.add(recp);
 	}
 
 	public Set<Account> getAccounts() {

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bank.entity.Account;
+import com.bank.entity.Recipient;
 import com.bank.entity.Transaction;
 import com.bank.entity.User;
 import com.bank.enums.AccountType;
@@ -103,5 +104,9 @@ public class UserAccountService {
 	
 	public void doTransfer(String name, double amount, AccountType accountType) throws InsufficientBalanceException {
 		bankRepository.doTransfer(name, amount, accountType);
+	}
+	
+	public List<Recipient> getRecipients(String name){
+		return bankRepository.getRecipients(name);
 	}
 }

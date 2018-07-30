@@ -44,10 +44,6 @@ public class UserAction implements ModelDriven<UserView>, SessionAware {
 		return "success";
 	}
 	
-	public String showRecipients() {
-		return "success";
-	}
-	
 	public String showAppointments() {
 		return "success";
 	}

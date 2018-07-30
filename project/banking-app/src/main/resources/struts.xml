@@ -104,7 +104,7 @@
 		</action>
 
 		<action name="recipients"
-			class="com.bank.user.actions.UserAction" method="showRecipients">
+			class="com.bank.user.actions.RecipientAction">
 			<interceptor-ref name="loginStack" />
 			<result name="success">
 				/views/recipients.jsp

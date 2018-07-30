@@ -26,6 +26,7 @@ public class Recipient {
 
 	@Column(columnDefinition = "BINARY(16)", nullable = false)
 	private UUID recipientID;
+	private String recipientName;
 
 	public UUID getRecipientID() {
 		return recipientID;
@@ -33,6 +34,14 @@ public class Recipient {
 
 	public void setRecipientID(UUID recipientID) {
 		this.recipientID = recipientID;
+	}
+
+	public String getRecipientName() {
+		return recipientName;
+	}
+
+	public void setRecipientName(String recipientName) {
+		this.recipientName = recipientName;
 	}
 
 	public User getUser() {
